@@ -90,10 +90,12 @@
                 </div>
                 
                 <div id='bazi-time-nl' class='transition hidden'>
-                    <div class="fields" >
+                    <div class="fields" style="margin-left: 10px">
                         <div class="inline field">
-                            <input type="number" min="1640" max="2100" [(ngModel)]="NlSearch.Year">
-                            <label>年</label>
+                            <div class="ui transparent input">
+                                <input type="number" min="1640" max="2100" [(ngModel)]="NlSearch.Year">
+                                <label>年</label>
+                            </div>
                         </div>
                         <div class="inline field">
                             <sm-select [Options]="NlSearch.MonthOptions"
@@ -105,31 +107,28 @@
                                        [Value]="NlSearch.Date"
                                        (Value)="NlSearch.Date = $event"></sm-select>
                         </div>
-                        <div class="inline field">
-                            <input type="checkbox" [(ngModel)]="NlSearch.Leap">
-                            <label>闰月</label>
-                        </div>
                     </div>
-                    <div class="fields">
+                    <div class="fields" style="margin-left: 10px">
                         <div class="inline field">
-                            <label>{{'时辰' | tran:glsetting.lang}}</label>
-                            <!--<input type="time" lang="zh" [(ngModel)]='Input.Time'>-->
-                            <input type="number" min="0" max="23" [(ngModel)]="Input.HH">
+                            <div class="ui transparent input">
+                                <input type="number" min="0" max="23" [(ngModel)]="Input.HH">
+                                <label>{{'时' | tran:glsetting.lang}}</label>
+                            </div>
                         </div>
                         <div class="inline field">
-                            <label>:</label>
-                            <input type="number" min="0" max="59" [(ngModel)]="Input.MM">
+                            <div class="ui transparent input">
+                                <input type="number" min="0" max="59" [(ngModel)]="Input.MM">
+                                <label>{{'分' | tran:glsetting.lang}}</label>
+                            </div>
                         </div>
-                        <!--<div class="inline field" style="margin-left: 5px">
+                        <div class="inline field">
                             <input type="checkbox" [(ngModel)]="NlSearch.Leap">
                             <label>闰月</label>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
                 
             </div>
-
-            
 
             <div class="field">
 
