@@ -1,0 +1,32 @@
+<div style="min-height: 200vh">
+    <div class="ui top attached menu">
+        <div class="ui animated fade primary button item" (click)="showMenu()">
+            <div class="visible content">
+                <i class="sidebar icon"></i>
+            </div>
+            <div class="hidden content">
+                {{'菜单' | tran:glsetting.lang}}
+            </div>
+        </div>
+    </div>
+
+    <div class="inline field">
+        <sm-select [Options]="jiazioptions"
+                   [Value]="Seletcted"
+                   (Value)="Seletcted = $event"></sm-select>
+    </div>
+
+    <div style="margin-bottom: 10px">Selected Item: {{Seletcted}}</div>
+
+    <button (click)="valueChanged()">change options</button>
+
+    <br>
+
+    <sm-select [Options]="guaoptions"
+               [Value]="SeletcedGua"
+               (Value)="SeletcedGua = $event"></sm-select>
+
+    <div style="margin-bottom: 10px">Selected Gua: {{SeletcedGua}}</div>
+
+    <sm-select [Options]="'简体 正体'"></sm-select>
+</div>

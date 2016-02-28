@@ -30,17 +30,17 @@
     </div>
     <div id='paigua-time-gz' class='transition hidden'>
         <div class="fields">
-            <div class="eight field">
+            <div class="inline field">
                 <label>{{'月令' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown" [(ngModel)]='InputTime.Yue'>
-                    <option *ngFor="#m of GanZhiNamesFull" [value]="m">{{m}}</option>
-                </select>
+                <sm-select [Options]="GanZhiNamesFull"
+                           [Value]="InputTime.Yue"
+                           (Value)="InputTime.Yue = $event"></sm-select>
             </div>
-            <div class="eight field">
+            <div class="inline field">
                 <label>{{'日令' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown"  [(ngModel)]='InputTime.Ri'>
-                    <option *ngFor="#d of GanZhiNames" [value]="d">{{d}}</option>
-                </select>
+                <sm-select [Options]="GanZhiNames"
+                           [Value]="InputTime.Ri"
+                           (Value)="InputTime.Ri = $event"></sm-select>
             </div>
         </div>
     </div>

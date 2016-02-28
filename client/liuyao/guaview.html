@@ -67,54 +67,6 @@
             {{Biangua.text | tran:glsetting.lang}}
         </div>
     </div>
-
-    <!--<div *ngFor="#i of [5,4,3,2,1,0]" class="ui grid" id="gua-region">
-        <div class="four wide column" *ngIf="showArrow">
-            <div class="ui grid">
-                <div class="six wide column"
-                     style="padding-left:3px;padding-top: 0;padding-right: 0;padding-bottom: 0">
-                    {{Shen6[i]| tran:glsetting.lang}}
-                </div>
-                <div class="ten wide column gua mean"
-                     [attr.data-content]="Fuyaos[i].info"
-                     style="padding:0;color: grey">
-                    {{Fuyaos[i].Text | tran:glsetting.lang}}
-                </div>
-            </div>
-        </div>
-        <div class="five wide column" *ngIf="showArrow == false">
-            <div class="ui grid">
-                <div class="six wide column"
-                     style="padding-left:3px;padding-top: 0;padding-right: 0;padding-bottom: 0">
-                    {{Shen6[i]| tran:glsetting.lang}}
-                </div>
-                <div class="ten wide column gua mean"
-                     [attr.data-content]="Fuyaos[i].info"
-                     style="padding:0;color: grey">
-                    {{Fuyaos[i].Text | tran:glsetting.lang}}
-                </div>
-            </div>
-        </div>
-
-        <div class="six wide column gua mean"
-             [attr.data-content]="Benyaos[i].info"
-             style="padding:0;">
-            {{Benyaos[i].Text | tran:glsetting.lang}}
-            <img [src]="Benyaos[i].Img">
-            {{Benyaos[i].ShiYing | tran:glsetting.lang}}
-        </div>
-        <div class="column" *ngIf="showArrow"
-             style="padding:0;font-weight: bolder">
-            <img [src]="ShiYing[i]">
-        </div>
-        <div class="five wide column gua mean"
-             *ngIf="HasBianGua"
-             [attr.data-content]="Bianyaos[i].info"
-             style="padding:0;">
-            {{Bianyaos[i].Text | tran:glsetting.lang}}
-            <img [src]="Bianyaos[i].Img">
-        </div>
-    </div>-->
     
     <table class="ui unstackable compact table" style="padding:0; margin:0" id="gua-table">
         <tbody>
@@ -150,32 +102,24 @@
 
 <div class="ui attached segment transition hidden gua setting">
     <div class="ui form">
-        <div class="two fields">
+        <div class="fields">
             <div class="inline field">
-                <label>{{'每行显示神煞数:' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown"
-                        [(ngModel)]="shenshaColumnCount">
-                    <option value="4">四</option>
-                    <option value="5">五</option>
-                    <option value="6">六</option>
-                    <option value="7">七</option>
-                </select>
+                <label>{{'每行神煞:' | tran:glsetting.lang}}</label>
+                <sm-select [Options]="'四 五 六 七'"
+                           [Value]="shenshaColumnCount - 4"
+                           (Value)="changeShenShaSetting($event)"></sm-select>
             </div>
             <div class="inline field">
-                <label>{{'卦爻显示方式:' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown"
-                        [(ngModel)]="simpleShow">
-                    <option value="f">{{'全排' | tran:glsetting.lang}}</option>
-                    <option value="s">{{'简排' | tran:glsetting.lang}}</option>
-                </select>
+                <label>{{'卦爻:' | tran:glsetting.lang}}</label>
+                <sm-select [Options]="'全排 简排'"
+                           [Value]="simpleShow == 'f' ? 0 : 1"
+                           (Value)="simpleShow = ($event == 0 ? 'f' : 's')"></sm-select>
             </div>
-        </div>
 
-        <div class="two fields">
             <div class="inline field">
                 <div class="ui checkbox">
                     <input type="checkbox" [(ngModel)]="showArrow">
-                    <label>{{'显示变爻箭头' | tran:glsetting.lang}}</label>
+                    <label>{{'变爻箭头' | tran:glsetting.lang}}</label>
                 </div>
             </div>
         </div>

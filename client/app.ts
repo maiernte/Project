@@ -1,5 +1,4 @@
 /// <reference path="../typings/angular2-meteor.d.ts" />
-/// <reference path="../typings/angular2.d.ts" />
 
 import {enableProdMode} from 'angular2/core';
 enableProdMode();
@@ -28,6 +27,7 @@ import {LiuyaoComponent} from 'client/liuyao/liuyaocomponent';
 import {PaiBazi} from 'client/bazi/paiBazi';
 import {BookMarket} from 'client/books/bookmarket'
 import {BookComponent} from 'client/books/bookcomponent'
+import {Demo} from 'client/allgemein/directives/demo'
 
 import {TranslatePipe} from './allgemein/translatePipe'
 import {GlobalSetting} from  './globalsetting'
@@ -56,7 +56,9 @@ declare var Promise;
     {path: '/books/...', as: 'Books', component: BookComponent},
     {path: '/user/...', as: 'User', component: UserComponent},
     {path: '/verify/:ad', as: 'Verified', component: MailVerified},
-    {path: 'resetpw/:tk', as: 'ResetPw', component: ResetPassword}
+    {path: '/resetpw/:tk', as: 'ResetPw', component: ResetPassword},
+
+    {path: '/demo', as: 'Demo', component: Demo}
 ])
 class HuaheApp {
     router: Router;

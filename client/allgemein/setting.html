@@ -27,26 +27,47 @@
         </div>
 
         <div class="item ui form">
-            <div class="inline fields">
+            <div class="inline field">
                 <label>{{'语言: ' | tran:glsetting.lang}}</label>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="appset-gender"
-                               value="zh" #zhlang
-                               (click)="TwLang = zhlang.value"
-                               [checked]="TwLang == 'zh'">
-                        <label>{{'简体' | tran:glsetting.lang}}</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui radio checkbox">
-                        <input type="radio" name="appset-gender"
-                               value="tw" #twlang
-                               (click)="TwLang = twlang.value"
-                               [checked]="TwLang == 'tw'">
-                        <label>{{'正体' | tran:glsetting.lang}}</label>
-                    </div>
-                </div>
+                <sm-select [Options]="'简体 正体'"
+                [Value]="TwLang"
+                (Value)="TwLang = $event"></sm-select>
+            </div>
+        </div>
+
+        <div class="item ui form">
+            <div class="inline field">
+                <label>{{'六爻盘每行神煞数: ' | tran:glsetting.lang}}</label>
+                <sm-select [Options]="'四 五 六 七'"
+                           [Value]="GuaShenSha"
+                           (Value)="GuaShenSha = $event"></sm-select>
+            </div>
+        </div>
+
+        <div class="item ui form">
+            <div class="inline field">
+                <label>{{'六爻盘显示方式: ' | tran:glsetting.lang}}</label>
+                <sm-select [Options]="'全排 简排'"
+                           [Value]="GuaSimple"
+                           (Value)="GuaSimple = $event"></sm-select>
+            </div>
+        </div>
+
+        <div class="item ui form">
+            <div class="inline field">
+                <label>{{'六爻变爻箭头: ' | tran:glsetting.lang}}</label>
+                <sm-select [Options]="'显示 隐藏'"
+                           [Value]="GuaArrow"
+                           (Value)="GuaArrow = $event"></sm-select>
+            </div>
+        </div>
+
+        <div class="item ui form">
+            <div class="inline field">
+                <label>{{'八字盘每行神煞数: ' | tran:glsetting.lang}}</label>
+                <sm-select [Options]="'四 五 六 七'"
+                           [Value]="BaziShenSha"
+                           (Value)="BaziShenSha = $event"></sm-select>
             </div>
         </div>
 
@@ -57,64 +78,19 @@
             </div>
         </div>
 
-        <div class="item ui form">
+        <div class="item ui form" *ngIf="!IsCordova">
             <div class="inline field">
-                <label>{{'六爻盘每行神煞数:' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown"
-                        [(ngModel)]="GuaShenSha">
-                    <option value="4">四</option>
-                    <option value="5">五</option>
-                    <option value="6">六</option>
-                    <option value="7">七</option>
-                </select>
+                <label>{{'导入书集:' | tran:glsetting.lang}}</label>
+                <input type="file" (change)="ImportBook($event)">
             </div>
         </div>
 
-        <div class="item ui form">
-            <div class="inline field">
-                <label>{{'卦爻显示方式:' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown"
-                        [(ngModel)]="GuaSimple">
-                    <option value="0">{{'全排' | tran:glsetting.lang}}</option>
-                    <option value="1">{{'简排' | tran:glsetting.lang}}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="item ui form">
-            <div class="inline field">
-                <div class="ui checkbox">
-                    <input type="checkbox" [(ngModel)]="GuaArrow">
-                    <label>{{'显示变爻箭头' | tran:glsetting.lang}}</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="item ui form">
-            <div class="inline field">
-                <label>{{'八字盘每行神煞数:' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown"
-                        [(ngModel)]="BaziShenSha">
-                    <option value="4">四</option>
-                    <option value="5">五</option>
-                    <option value="6">六</option>
-                    <option value="7">七</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="item ui form">
+        <div class="item ui form" style="margin-bottom: 15px">
             <div class="inline field">
                 <label>{{'本地数据:' | tran:glsetting.lang}}</label>
                 <button class="ui tiny primary button" (click)="ClearLocalDB()">
                     {{'清空本地数据' | tran:glsetting.lang}}
                 </button>
-            </div>
-        </div>
-        <div class="item ui form" *ngIf="!IsCordova">
-            <div class="inline field">
-                <label>{{'导入书集:' | tran:glsetting.lang}}</label>
-                <input type="file" (change)="ImportBook($event)">
             </div>
         </div>
     </div>

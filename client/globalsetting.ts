@@ -143,11 +143,11 @@ export  class GlobalSetting{
             window['canvas2ImagePlugin'].saveImageDataToLibrary(
                 function (msg) {
                     //console.log(msg);
-                    this.ShowMessage('图片保存', '路径：' + msg)
+                    this.Alert('图片保存', '路径：' + msg)
                 },
                 function (err) {
                     //console.log('fehler : ' + err);
-                    this.ShowMessage('保存图片出错', err)
+                    this.Alert('保存图片出错', err)
                 },
                 canva
             );

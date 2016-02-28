@@ -6,22 +6,24 @@ import {TranslatePipe} from 'client/allgemein/translatePipe'
 import {GlobalSetting} from  'client/globalsetting'
 
 import {LocalRecords, LocalBooks} from 'collections/books'
+import {SemanticSelect} from './directives/smselect'
 
 declare var jQuery:any;
 
 @Component({
     selector: 'global-setting',
     templateUrl: 'client/allgemein/setting.html',
-    pipes: [TranslatePipe]
+    pipes: [TranslatePipe],
+    directives: [SemanticSelect]
 })
 
 export class AppSetting{
-    private twlang: string
-    private guaShenSha: string
-    private guaSimple: string
-    private baziShenSha: string
+    private twlang: number
+    private guaShenSha: number
+    private guaSimple: number
+    private baziShenSha: number
     private bookpagerd: number;
-    private guaArrow: boolean;
+    private guaArrow: number;
 
     glsetting:GlobalSetting;
     constructor(@Inject(GlobalSetting) glsetting: GlobalSetting){
@@ -32,42 +34,42 @@ export class AppSetting{
         return this.glsetting.IsCordova
     }
 
-    get TwLang(): string{
+    get TwLang(): number{
         return this.twlang;
     }
 
     set TwLang(value){
         this.twlang = value;
-        this.glsetting.SetValue('lang', value == 'tw')
+        this.glsetting.SetValue('lang', value == 1)
     }
 
-    get GuaShenSha(): string{
+    get GuaShenSha(): number{
         return this.guaShenSha;
     }
 
     set GuaShenSha(value){
         this.guaShenSha = value;
-        this.glsetting.SetValue('gua-shensha', value)
+        let tosave = parseInt(value.toString()) + 4
+        this.glsetting.SetValue('gua-shensha', tosave)
     }
 
-    get BaziShenSha(): string{
+    get BaziShenSha(): number{
         return this.baziShenSha;
     }
 
     set BaziShenSha(value){
         this.baziShenSha = value;
-        this.glsetting.SetValue('bazi-shensha', value)
+        let tosave = parseInt(value.toString()) + 4
+        this.glsetting.SetValue('bazi-shensha', tosave)
     }
 
-
-    get GuaSimple(): string{
+    get GuaSimple(): number{
         return this.guaSimple;
     }
 
     set GuaSimple(value){
-        console.log('set simgple', value, typeof  value)
-        this.guaSimple = value;
-        this.glsetting.SetValue('gua-simple', value == '1')
+        this.guaSimple = parseInt(value.toString());
+        this.glsetting.SetValue('gua-simple', this.guaSimple == 1)
     }
 
     get BookPageRD()
@@ -80,13 +82,13 @@ export class AppSetting{
         this.glsetting.SetValue('book-pagerd', value)
     }
 
-    get GuaArrow(){
+    get GuaArrow(): number{
         return this.guaArrow
     }
 
     set GuaArrow(value){
-        this.guaArrow = value;
-        this.glsetting.SetValue('gua-arrow', value)
+        this.guaArrow = parseInt(value.toString());
+        this.glsetting.SetValue('gua-arrow', this.guaArrow == 0)
     }
 
     showMenu(hide){
@@ -98,12 +100,12 @@ export class AppSetting{
     }
 
     ngOnInit(){
-        this.twlang = this.glsetting.lang ? 'tw' : 'zh';
-        this.guaShenSha = this.glsetting.GetSetting('gua-shensha').toString();
-        this.guaSimple = this.glsetting.GetSetting('gua-simple') == true ? '1' : '0';
-        this.baziShenSha = this.glsetting.GetSetting('bazi-shensha').toString();
+        this.twlang = this.glsetting.lang ? 1 : 0;
+        this.guaShenSha = parseInt(this.glsetting.GetSetting('gua-shensha').toString()) - 4;
+        this.guaSimple = this.glsetting.GetSetting('gua-simple') == true ? 1 : 0;
+        this.baziShenSha = parseInt(this.glsetting.GetSetting('bazi-shensha').toString()) - 4;
         this.bookpagerd = this.glsetting.PageSize;
-        this.guaArrow = this.glsetting.GetSetting('gua-arrow')
+        this.guaArrow = this.glsetting.GetSetting('gua-arrow') == true ? 0 : 1
 
         let hideMenu = true;
         this.showMenu(hideMenu);

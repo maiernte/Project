@@ -6,36 +6,34 @@
         </div>
     </h5>
     <div id='paigua-yao-name' [class.guagong]='GuaGongOrder === true'>
-        <div class='fields'>
+        <!--<div class='fields'>
             <div class='inline field'>
                 <label>{{'卦序：' | tran:glsetting.lang}}</label>
-                <!--<input type="checkbox" [(ngModel)]="GuaGongOrder">-->
+                &lt;!&ndash;<input type="checkbox" [(ngModel)]="GuaGongOrder">&ndash;&gt;
                 <div class="ui toggle checkbox">
                     <input type="checkbox" [(ngModel)]="GuaGongOrder">
                     <label>{{GuaOrderText | tran:glsetting.lang}}</label>
                 </div>
             </div>
-        </div>
-        <div class="fields" id='paigua-guachi'>
+        </div>-->
+
+        <div class="fields">
             <div class="inline field">
                 <label>{{'本卦' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown" [(ngModel)]="bengua">
-                    <option *ngFor="#g of GuaNameOptions"
-                            [value]="g.Name"
-                            [disabled]="g.IsGua === false">
-                        {{g.Name}}
-                    </option>
-                </select>
+                <sm-select [Options]="GuaOptions"
+                           [Value]="bengua"
+                           (Value)="bengua = $event"></sm-select>
             </div>
             <div class="inline field">
                 <label>{{'变卦' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown" [(ngModel)]="biangua">
-                    <option *ngFor="#g of GuaNameOptions"
-                            [value]="g.Name"
-                            [disabled]="g.IsGua === false">
-                        {{g.Name}}
-                    </option>
-                </select>
+                <sm-select [Options]="GuaOptions"
+                           [Value]="biangua"
+                           (Value)="biangua = $event"></sm-select>
+            </div>
+            <div class='inline field'>
+                <sm-select [Options]="'上卦排序 卦宫排序'"
+                           [Value]="GuaGongOrder ? 1 : 0"
+                           (Value)="GuaGongOrder = ($event == 1)"></sm-select>
             </div>
         </div>
     </div>

@@ -7,20 +7,22 @@ import {TranslatePipe} from 'client/allgemein/translatePipe'
 import {GlobalSetting} from  'client/globalsetting'
 import {GanZhi, ZhiNames} from "../../../lib/base/ganzhi";
 
+import {SemanticSelect, tyoption} from 'client/allgemein/directives/smselect'
+
 declare var jQuery:any;
 
 @Component({
     selector: 'pailiuyao-time',
     pipes: [TranslatePipe],
     templateUrl: 'client/liuyao/paipan/pailiuyaotime.html',
-    directives: [NgFor]
+    directives: [NgFor, SemanticSelect]
 })
 
 export class PailiuyaoTime{
     private rootElement: ElementRef;
     private ganzhiModel = false;
-    private ganzhinames: Array<string>;
-    private ganzhinamesfull: Array<string>;
+    private ganzhinames: tyoption;
+    private ganzhinamesfull: tyoption;
     
     glsetting:GlobalSetting;
     InputTime = {
@@ -67,14 +69,23 @@ export class PailiuyaoTime{
 
     get GanZhiNames() {
         if(!this.ganzhinames){
-            this.ganzhinames = [].concat(GanZhi.GanZhiNames);
+            //this.ganzhinames = [].concat(GanZhi.GanZhiNames);
+            this.ganzhinames = {Items: []}
+            this.ganzhinames.Items = GanZhi.GanZhiNames.map(gz => {
+                return {Value: gz, Text: gz}
+            })
         }
+
         return this.ganzhinames;
     }
 
     get GanZhiNamesFull() {
         if(!this.ganzhinamesfull){
-            this.ganzhinamesfull = ZhiNames().concat(GanZhi.GanZhiNames);
+            this.ganzhinamesfull = {Items: []}
+            let tmp = ZhiNames().concat(GanZhi.GanZhiNames);
+            this.ganzhinamesfull.Items = tmp.map(gz => {
+                return {Value: gz, Text: gz}
+            })
         }
 
         return this.ganzhinamesfull
@@ -90,8 +101,8 @@ export class PailiuyaoTime{
             Time: timeText,
             HH: time.getHours(),
             MM: time.getMinutes(),
-            Yue: this.GanZhiNamesFull[0],
-            Ri: this.GanZhiNames[0]
+            Yue: '子',
+            Ri: '甲子'
         }
         
         //let domTime = jQuery('#paigua-time-gl')

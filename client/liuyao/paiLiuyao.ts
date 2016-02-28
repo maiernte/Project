@@ -81,8 +81,7 @@ export class PaiLiuyao {
             params['gua'] = gua === 3 ? this.calcRandomGua() : this.calcRiYueGua(gua);
             params['question'] = this.question
         }
-
-        //console.log('paigua', params)
+        
         //this.router.parent.navigate(['/Desktop', params])
         this.emitter.emit(params)
     }

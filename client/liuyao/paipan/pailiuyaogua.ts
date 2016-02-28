@@ -5,21 +5,25 @@ import {TranslatePipe} from 'client/allgemein/translatePipe'
 import {GlobalSetting} from  'client/globalsetting'
 import {Gua64} from "../../../lib/base/gua"
 
+import {SemanticSelect, tyoption, tyitem} from 'client/allgemein/directives/smselect'
+
 declare var jQuery:any;
 
 @Component({
     selector: 'pailiuyao-gua',
     pipes: [TranslatePipe],
     templateUrl: 'client/liuyao/paipan/pailiuyaogua.html',
-    directives: [NgFor]
+    directives: [NgFor, SemanticSelect]
 })
 
 export class PaiLiuyaoGua{
     private rootElement: ElementRef;
     private guagongOrder:boolean = false;
     private guayaoModel = false;
+    private tran: TranslatePipe
 
-    GuaNameOptions: Array<Object>;
+    //GuaNameOptions: Array<Object>;
+    GuaOptions: tyoption
     GuaOrderText: string;
     ActiveYao = 0;
 
@@ -29,19 +33,24 @@ export class PaiLiuyaoGua{
     Symbols = ['shaoyin.svg', 'shaoyan.svg', 'laoyin.svg', 'laoyan.svg', 'empty.svg']
     SetedYaos = [4, 4, 4, 4, 4, 4]
 
-    private static guaNamesShang:Array<Object>;
-    private static guaNamesGong:Array<Object>;
+    //private static guaNamesShang:Array<Object>;
+    //private static guaNamesGong:Array<Object>;
     
     glsetting:GlobalSetting;
     constructor(@Inject(GlobalSetting) glsetting:GlobalSetting, elementRef: ElementRef) {
         this.glsetting = glsetting;
         this.rootElement = elementRef;
+        this.tran = new TranslatePipe;
     }
     
     get Result(){
         if(this.GuayaoModel == true){
             return this.convertYaoToName();
         }else{
+            let useTW = false
+            this.bengua = this.tran.transform(this.bengua, [useTW])
+            this.biangua = this.tran.transform(this.biangua, [useTW])
+
             return [this.bengua, this.biangua]
         }
     }
@@ -78,8 +87,8 @@ export class PaiLiuyaoGua{
         if(this.GuayaoModel === true){
 
         }else{
-            this.bengua = this.GuaNameOptions[1]['Name']
-            this.biangua = this.GuaNameOptions[1]['Name']
+            this.bengua = '坤为地'
+            this.biangua = '坤为地'
         }
 
         jQuery(this.rootElement.nativeElement)
@@ -92,50 +101,47 @@ export class PaiLiuyaoGua{
     
     initGuaNames(guagong:boolean) {
         if (guagong === false) {
-            if (!PaiLiuyaoGua.guaNamesShang) {
-                PaiLiuyaoGua.guaNamesShang = [];
-                this.initGuaNamesShang();
-            }
-
-            this.GuaNameOptions = PaiLiuyaoGua.guaNamesShang;
+            this.initGuaNamesShang();
         } else {
-            if (!PaiLiuyaoGua.guaNamesGong) {
-                PaiLiuyaoGua.guaNamesGong = [];
-                this.initGuaNamesGong();
-            }
-
-            this.GuaNameOptions = PaiLiuyaoGua.guaNamesGong;
+            this.initGuaNamesGong();
         }
     }
     
     private initGuaNamesShang(){
+        this.GuaOptions = {Groups: []}
+
         for (let s = 0; s < 8; s++) {
             let gua = Gua64(s * 8 + s);
-            PaiLiuyaoGua.guaNamesShang.push({Name: '上卦 - ' + gua.Shang.Name, IsGua: false});
 
+            let gp = {Name: '上卦 - ' + gua.Shang.Name, Items: []}
+            this.GuaOptions.Groups.push(gp)
             for (let x = 0; x < 8; x++) {
                 let gua = Gua64(s * 8 + x);
-                PaiLiuyaoGua.guaNamesShang.push({Name: gua.Name, IsGua: true});
+                gp.Items.push({Value: gua.Name, Text: gua.Name});
             }
         }
     }
 
     private initGuaNamesGong(){
+        this.GuaOptions = {Groups: []}
         var pattern = [1, 2, 4, 8, 16, 8, 7];
 
-        for (var idx = 0; idx < 8; idx++) {
+        for (var idx = 0; idx < 8; idx++){
             var guaIndex = idx + idx * 8;
             var mainGua = Gua64(guaIndex);
 
-            PaiLiuyaoGua.guaNamesGong.push ({ Name: '卦宫 - ' + mainGua.Shang.Name, IsGua: false });
-            PaiLiuyaoGua.guaNamesGong.push({Name: mainGua.Name, IsGua: true});
+            let gp = {Name: '卦宫 - ' + mainGua.Shang.Name, Items: []}
+            this.GuaOptions.Groups.push(gp)
+            gp.Items.push({Value: mainGua.Name, Text: mainGua.Name})
 
             for (var p = 0; p < pattern.length; p++) {
                 guaIndex = guaIndex ^ pattern[p];
                 var gua = Gua64(guaIndex);
-                PaiLiuyaoGua.guaNamesGong.push({Name: gua.Name, IsGua: true});
+                gp.Items.push({Name: gua.Name, Text: gua.Name});
             };
-        };
+        }
+
+        console.log(this.GuaOptions)
     }
     
     private showAnimate(outId: string, inId: string){

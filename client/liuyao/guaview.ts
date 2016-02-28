@@ -10,13 +10,15 @@ import {GlobalSetting} from  'client/globalsetting'
 import {Gua} from "../../lib/base/gua";
 import {GanZhi} from "../../lib/base/ganzhi";
 
+import {SemanticSelect} from 'client/allgemein/directives/smselect'
+
 declare var jQuery:any;
 
 @Component({
     selector: 'guaview',
     templateUrl: 'client/liuyao/guaview.html',
     pipes: [TranslatePipe],
-    directives: [NgFor],
+    directives: [NgFor, SemanticSelect],
     styles: [`
         .ui.table{
             border-color: transparent;
@@ -312,9 +314,9 @@ export class GuaView{
             params =  this.initdata
         }
 
-
         this.onInitParse(params);
         this.onInitBaseInfo(params);
+        this.simpleShow = this.glsetting.GetSetting('gua-simple') == true ? 's' : 'f'
 
         let ben = params['gua'][0]
         let bian = params['gua'][1]
@@ -365,6 +367,10 @@ export class GuaView{
             deleted: false,
             cloud: false
         }
+    }
+
+    changeShenShaSetting(value){
+        this.shenshaColumnCount = parseInt(value.toString()) + 4
     }
 
     private tran(txt): string{

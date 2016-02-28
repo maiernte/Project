@@ -211,13 +211,9 @@
         <div class="two fields">
             <div class="inline field">
                 <label>{{'每行显示神煞数:' | tran:glsetting.lang}}</label>
-                <select class="ui fluid dropdown"
-                        [(ngModel)]="shenshaColumnCount">
-                    <option value="4">四</option>
-                    <option value="5">五</option>
-                    <option value="6">六</option>
-                    <option value="7">七</option>
-                </select>
+                <sm-select [Options]="'四 五 六 七'"
+                           [Value]="shenshaColumnCount - 4"
+                           (Value)="changeShenShaSetting($event)"></sm-select>
             </div>
         </div>
 

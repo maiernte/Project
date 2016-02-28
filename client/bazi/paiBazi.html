@@ -47,26 +47,19 @@
                     </div>
                 </div>
             </div>
-            <div class="inline fields">
+            <div class="fields">
                 <label>出生地: </label>
-                <div class="field">
-                    <select class="ui fluid dropdown"
-                            [(ngModel)]="Land">
-                        <option *ngFor="#land of maps"
-                                [value]="land.Name">
-                            {{land.Name | tran:glsetting.lang}}
-                        </option>
-                    </select>
+                <div class="inline field">
+                    <sm-select [Options]="LandOptions"
+                               [Value]="Land"
+                               (Value)="Land = $event"></sm-select>
                     <label>省</label>
                 </div>
-                <div class="field">
-                    <select class="ui fluid dropdown"
-                            [(ngModel)]="City">
-                        <option *ngFor="#city of cities"
-                                [value]="city.Name">
-                            {{city.Name | tran:glsetting.lang}}
-                        </option>
-                    </select>
+                <div class="inline field">
+
+                    <sm-select [Options]="CityOptions"
+                               [Value]="City"
+                               (Value)="City = $event"></sm-select>
                     <label>市/县</label>
                 </div>
             </div>
@@ -98,21 +91,23 @@
                 
                 <div id='bazi-time-nl' class='transition hidden'>
                     <div class="fields" >
-                        <div class="six field">
-                            <label>年</label>
+                        <div class="inline field">
                             <input type="number" min="1640" max="2100" [(ngModel)]="NlSearch.Year">
+                            <label>年</label>
                         </div>
-                        <div class="five field">
-                            <label>月</label>
-                            <select class="ui fluid dropdown" [(ngModel)]="NlSearch.Month">
-                                <option *ngFor="#m of NlSearch.MonthOptions" [value]="m">{{m}}</option>
-                            </select>
+                        <div class="inline field">
+                            <sm-select [Options]="NlSearch.MonthOptions"
+                                       [Value]="NlSearch.Month"
+                                       (Value)="NlSearch.Month = $event"></sm-select>
                         </div>
-                        <div class="five field">
-                            <label>日</label>
-                            <select class="ui fluid dropdown" [(ngModel)]="NlSearch.Date">
-                                <option *ngFor="#d of NlSearch.DateOptions" [value]="d">{{d}}</option>
-                            </select>
+                        <div class="inline field">
+                            <sm-select [Options]="NlSearch.DateOptions"
+                                       [Value]="NlSearch.Date"
+                                       (Value)="NlSearch.Date = $event"></sm-select>
+                        </div>
+                        <div class="inline field">
+                            <input type="checkbox" [(ngModel)]="NlSearch.Leap">
+                            <label>闰月</label>
                         </div>
                     </div>
                     <div class="fields">
@@ -125,10 +120,10 @@
                             <label>:</label>
                             <input type="number" min="0" max="59" [(ngModel)]="Input.MM">
                         </div>
-                        <div class="inline field" style="margin-left: 5px">
-                            <label>闰月</label>
+                        <!--<div class="inline field" style="margin-left: 5px">
                             <input type="checkbox" [(ngModel)]="NlSearch.Leap">
-                        </div>
+                            <label>闰月</label>
+                        </div>-->
                     </div>
                 </div>
                 
@@ -157,45 +152,29 @@
     <div [hidden]="Panel != 'calc'">
         <div class="ui form" style="margin-top: 10px">
             <div class="fields">
-                <div class="field">
+                <div class=" field">
                     <label>年</label>
-                    <select class="ui fluid dropdown"
-                            [(ngModel)]="CalcSet.Y">
-                        <option *ngFor="#y of GanZhiNames"
-                                [value]="y">
-                            {{y}}
-                        </option>
-                    </select>
+                    <sm-select [Options]="GanZhiNames"
+                               [Value]="CalcSet.Y"
+                               (Value)="CalcSet.Y = $event"></sm-select>
                 </div>
-                <div class="field">
+                <div class=" field">
                     <label>月</label>
-                    <select class="ui fluid dropdown"
-                            [(ngModel)]="CalcSet.M">
-                        <option *ngFor="#m of GanZhiNamesM"
-                                [value]="m">
-                            {{m}}
-                        </option>
-                    </select>
+                    <sm-select [Options]="GanZhiNamesM"
+                               [Value]="CalcSet.M"
+                               (Value)="CalcSet.M = $event"></sm-select>
                 </div>
-                <div class="field">
+                <div class=" field">
                     <label>日</label>
-                    <select class="ui fluid dropdown"
-                            [(ngModel)]="CalcSet.D">
-                        <option *ngFor="#d of GanZhiNames"
-                                [value]="d">
-                            {{d}}
-                        </option>
-                    </select>
+                    <sm-select [Options]="GanZhiNames"
+                               [Value]="CalcSet.D"
+                               (Value)="CalcSet.D = $event"></sm-select>
                 </div>
-                <div class="field">
+                <div class=" field">
                     <label>时</label>
-                    <select class="ui fluid dropdown"
-                            [(ngModel)]="CalcSet.T">
-                        <option *ngFor="#t of GanZhiNamesT"
-                                [value]="t">
-                            {{t}}
-                        </option>
-                    </select>
+                    <sm-select [Options]="GanZhiNamesT"
+                               [Value]="CalcSet.T"
+                               (Value)="CalcSet.T = $event"></sm-select>
                 </div>
             </div>
 

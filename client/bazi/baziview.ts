@@ -13,6 +13,8 @@ import {LandMaps} from "../../lib/lunar/landmaps";
 import {Bazi, BaziYun} from '../../lib/base/bazi'
 import {GanZhi} from "../../lib/base/ganzhi";
 
+import {SemanticSelect} from 'client/allgemein/directives/smselect'
+
 declare var jQuery:any;
 declare var alertify;
 
@@ -20,7 +22,7 @@ declare var alertify;
     selector: 'baziview',
     templateUrl: 'client/bazi/baziview.html',
     pipes: [TranslatePipe],
-    directives: [NgFor]
+    directives: [NgFor, SemanticSelect]
 })
 
 export class BaziView{
@@ -275,6 +277,10 @@ export class BaziView{
 
         alertify.set('notifier','position', 'top-right');
         alertify.notify(dom, "warning", 0)
+    }
+
+    changeShenShaSetting(value){
+        this.shenshaColumnCount = parseInt(value.toString()) + 4
     }
 
     private paiBazi(params){

@@ -32,15 +32,38 @@ export class TranslatePipe{
         
         let tw = false
         try{
-            tw = (params[0] || TranslatePipe.tradional)
+            tw = params[0]
         }catch(err){
-            
+            tw = TranslatePipe.tradional
         }
         
-        if(tw === true){
+        if(tw == true){
             return typeof text == 'string' ? TranslatePipe.s2t(text) : text.toString();
         }else{
-            return text.toString();
+            return typeof text == 'string' ? TranslatePipe.t2s(text) :text.toString();
+        }
+    }
+
+    transback(text, params){
+        console.log('params', params)
+        if(!text){
+            return ''
+        }
+
+        let tw = false
+        try{
+            tw = params[0]
+        }catch(err){
+            tw = TranslatePipe.tradional
+        }
+
+        console.log('tw', tw, typeof tw)
+        if(tw == true){
+            console.log('s2t')
+            return typeof text == 'string' ? TranslatePipe.s2t(text) : text.toString();
+        }else{
+            console.log('t2s')
+            return typeof text == 'string' ? TranslatePipe.t2s(text) :text.toString();
         }
     }
     

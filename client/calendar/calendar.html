@@ -102,37 +102,33 @@
         <div class="ui small form" [hidden]="searchModel === false">
             <h5 class="ui dividing header">{{'选择农历时间' | tran:glsetting.lang}}</h5>
             <div class="fields">
-                <div class="six wide field">
-                    <label>年</label>
+                <div class="inline field">
                     <input type="number" min="1640" max="2100" [(ngModel)]="NlSearch.Year">
+                    <label>年</label>
                 </div>
-                <div class="three wide field">
-                    <label>月</label>
-                    <select class="ui fluid dropdown" [(ngModel)]="NlSearch.Month">
-                        <option *ngFor="#m of NlSearch.MonthOptions" [value]="m">{{m}}</option>
-                    </select>
+                <div class="inline field">
+                    <sm-select [Options]="NlSearch.MonthOptions"
+                                [Value]="NlSearch.Month"
+                                (Value)="NlSearch.Month = $event"></sm-select>
                 </div>
-                <div class="three wide field">
-                    <label>日</label>
-                    <select class="ui fluid dropdown" [(ngModel)]="NlSearch.Date">
-                        <option *ngFor="#d of NlSearch.DateOptions" [value]="d">{{d}}</option>
-                    </select>
+                <div class="inline field">
+                    <sm-select [Options]="NlSearch.DateOptions"
+                               [Value]="NlSearch.Date"
+                               (Value)="NlSearch.Date = $event"></sm-select>
                 </div>
-                <div class="three wide field">
-                    <label>闰月</label>
+                <div class="inline field">
                     <input type="checkbox" [(ngModel)]="NlSearch.Leap">
+                    <label>闰月</label>
                 </div>
             </div>
             <div class="ui items" style="margin-top: 0">
                 <div class="item">
-                    <div class="ui tiny image">
+                    <div class="middle aligned content">
                         <button class="ui primary small button"
                                 (click)="searchNL()" >
                             {{'查找' | tran:glsetting.lang}}
                         </button>
-                    </div>
-                    <div class="middle aligned content">
-                        <a (click)="SelectedDate = NlSearch.Result">
+                        <a (click)="SelectedDate = NlSearch.Result" style="margin-left: 5px">
                             {{NlSearch.ResultTX}}
                         </a>
                     </div>

@@ -1,0 +1,36 @@
+<div class="ui dropdown semantic"
+     *ngIf="!UseOrigin"
+     [class.scrolling]="!Grouped">
+    <!--<div class="default text">{{Selected.Text | tran:glsetting.lang}}</div>-->
+    <span class="text">{{Selected.Text | tran:glsetting.lang}}</span>
+    <i class="dropdown icon"></i>
+    <div class="menu" *ngIf="Grouped">
+        <div class="item" *ngFor="#gp of Options.Groups">
+            <i class="dropdown icon"></i>
+            <span class="text">{{gp.Name | tran:glsetting.lang}}</span>
+            <div class="right menu">
+                <div class="item" *ngFor="#i of gp.Items"
+                    [attr.data-value]="i.Value">
+                    {{i.Text | tran:glsetting.lang}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu" *ngIf="!Grouped">
+        <div class="item" *ngFor="#i of Options.Items"
+             [attr.data-value]="i.Value">
+            {{i.Text | tran:glsetting.lang}}
+        </div>
+    </div>
+</div>
+
+<select class="ui dropdown"
+        *ngIf="UseOrigin"
+        (change)="changeValue($event)">
+    <div class="default text">{{Selected.Text | tran:glsetting.lang}}</div>
+    <option *ngFor="#i of Options.Items"
+            [value]="i.Value"
+            [disabled]="i.Value == null">
+        {{i.Text | tran:glsetting.lang}}
+    </option>
+</select>

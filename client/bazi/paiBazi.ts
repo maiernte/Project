@@ -14,6 +14,8 @@ import {LandMaps} from "../../lib/lunar/landmaps";
 import {GanZhi} from '../../lib/base/ganzhi'
 import {TYLunar, TYDate} from '../../lib/lunar/tylunar'
 
+import {SemanticSelect, tyoption} from 'client/allgemein/directives/smselect'
+
 declare var jQuery:any;
 declare var moment;
 
@@ -21,19 +23,25 @@ declare var moment;
     selector: 'paibazi',
     templateUrl: 'client/bazi/paiBazi.html',
     pipes:[TranslatePipe],
-    directives: [NgFor]
+    directives: [NgFor, SemanticSelect]
 })
 
 export class PaiBazi{
     emitter = PaipanEmitter.get(PaipanEmitter.Paipan);
     
     private gongliModel = true
-    private ganzhinames: Array<string>;
+    private ganzhinames: tyoption;
+
     Panel = 'paipan';
 
     solarinfo = '';
     maps: Array<Object>;
     cities: Array<Object>;
+    LandOptions: tyoption
+    CityOptions: tyoption
+    monthCollection: tyoption;
+    timeCollection: tyoption;
+
     Input = {
         Name: '',
         Gender: 'm',
@@ -57,8 +65,7 @@ export class PaiBazi{
         Result: null,
         ResultTx: ''
      }
-    monthCollection: Array<string>;
-    timeCollection: Array<string>;
+
     NlSearch:Object;
 
     glsetting:GlobalSetting;
@@ -111,7 +118,11 @@ export class PaiBazi{
 
     get GanZhiNames() {
         if(!this.ganzhinames){
-            this.ganzhinames = [].concat(GanZhi.GanZhiNames);
+            //this.ganzhinames = [].concat(GanZhi.GanZhiNames);
+            this.ganzhinames = {Items: []}
+            this.ganzhinames.Items = GanZhi.GanZhiNames.map(gz => {
+                return {Value: gz, Text: gz}
+            })
         }
 
         return this.ganzhinames
@@ -119,11 +130,18 @@ export class PaiBazi{
 
     get GanZhiNamesM(){
         if(this.CalcSet.y != this.CalcSet.Y || !this.monthCollection){
-            this.monthCollection = this.qiganzhi(this.CalcSet.Y, true);
+            this.monthCollection = {Items: []}
+            this.monthCollection.Items = this.qiganzhi(this.CalcSet.Y, true).map(
+                gz => {
+                    return {Value: gz, Text: gz}
+                }
+            );
+
             this.CalcSet.y = this.CalcSet.Y;
-            setTimeout(() => {
+
+            /*setTimeout(() => {
                 this.CalcSet.M = this.monthCollection[0]
-            }, 500)
+            }, 500)*/
         }
 
         return this.monthCollection;
@@ -131,11 +149,17 @@ export class PaiBazi{
 
     get GanZhiNamesT(){
         if(this.CalcSet.d != this.CalcSet.D || !this.timeCollection){
-            this.timeCollection = this.qiganzhi(this.CalcSet.D, false);
+            this.timeCollection = {Items: []}
+            this.timeCollection.Items = this.qiganzhi(this.CalcSet.D, false).map(
+                gz => {
+                    return {Value: gz, Text: gz}
+                }
+            );
+
             this.CalcSet.d = this.CalcSet.D;
-            setTimeout(() => {
+            /*setTimeout(() => {
                 this.CalcSet.T = this.timeCollection[0]
-            }, 500)
+            }, 500)*/
         }
 
         return this.timeCollection;
@@ -153,16 +177,17 @@ export class PaiBazi{
             this.showAnimate('bazi-time-gl', 'bazi-time-nl');
         }
     }
-
-    monthcollectionchanged(){
-        console.log("monthcollectionchanged")
-    }
     
     ngOnInit(){
         let hideMenu = true;
         this.showMenu(hideMenu);
 
         this.maps = LandMaps.Maps;
+        this.LandOptions = {Items:[]}
+        this.LandOptions.Items = this.maps.map(l => {
+            return {Value: l['Name'], Text: l['Name']}
+        })
+
         this.Land = this.maps[0]['Name']
 
         let time = new Date(Date.now())
@@ -171,18 +196,18 @@ export class PaiBazi{
         this.Input.MM = time.getMinutes();
 
         this.Solar = true;
-        this.CalcSet.Y = this.GanZhiNames[0];
-        this.CalcSet.D = this.GanZhiNames[0];
+        this.CalcSet.Y = '甲子';
+        this.CalcSet.D = '甲子';
         this.CalcSet.currentYear = (new Date(Date.now())).getFullYear();
         
-        let tydate = new TYDate(time)
+        //let tydate = new TYDate(time)
         this.NlSearch={
             Year: time.getFullYear(),
-            MonthOptions:TYLunar.M_ChineseMonthNames,
-            DateOptions: TYLunar.M_DayNames,
-            Month: tydate.NLmonth,
-            Date: tydate.NLdate,
-            Leap: !!tydate.NLleap,
+            MonthOptions:TYLunar.M_ChineseMonthNames.join('月 '),
+            DateOptions: TYLunar.M_DayNames.join(' '),
+            Month: 0,
+            Date: 0,
+            Leap: false,
         }
     }
 
@@ -235,8 +260,8 @@ export class PaiBazi{
     
     private searchNL(){
         var y = this.NlSearch['Year'];
-        var m = this.NlSearch['MonthOptions'].indexOf(this.NlSearch['Month']) + 1
-        var d = this.NlSearch['DateOptions'].indexOf(this.NlSearch['Date']) + 1
+        var m = parseInt(this.NlSearch['Month'].toString()) + 1
+        var d = parseInt(this.NlSearch['Date'].toString()) + 1
         var leap = '';
         if(this.NlSearch['Leap'] === true){
             m = m * (-1);
@@ -251,6 +276,11 @@ export class PaiBazi{
         let res = this.maps.filter(l => l['Name'] == this.Input.Land);
         this.cities = res[0]['Cities']
         this.City = this.cities[0]['Name']
+
+        this.CityOptions = {Items: []}
+        this.CityOptions.Items = this.cities.map(c => {
+            return {Value: c['Name'], Text: c['Name']}
+        })
     }
 
     private initSolarInfo(){

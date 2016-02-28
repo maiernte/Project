@@ -9,13 +9,13 @@ import {GlobalSetting} from  'client/globalsetting'
 
 import {TYLunar, TYDate} from 'lib/lunar/tylunar';
 import {LandMaps} from 'lib/lunar/landmaps';
-
+import {SemanticSelect} from 'client/allgemein/directives/smselect'
 
 @Component({
     selector: 'calendarview',
     templateUrl: 'client/calendar/calendar.html',
     pipes: [TranslatePipe],
-    directives: [NgFor],
+    directives: [NgFor, SemanticSelect],
     styles: [`
         .column.th.cell{
             text-align:center;
@@ -127,14 +127,15 @@ export class CalendarView {
 
     searchNL(){
         var y = this.NlSearch['Year'];
-        var m = this.NlSearch['MonthOptions'].indexOf(this.NlSearch['Month']) + 1
-        var d = this.NlSearch['DateOptions'].indexOf(this.NlSearch['Date']) + 1
+        //var m = this.NlSearch['MonthOptions'].indexOf(this.NlSearch['Month']) + 1
+        var m = parseInt(this.NlSearch['Month'].toString()) + 1
+        var d = parseInt(this.NlSearch['Date'].toString()) + 1
         var leap = '';
         if(this.NlSearch['Leap'] === true){
             m = m * (-1);
             leap = '闰'
         }
-
+console.log('search ..', y , m, d)
         let res = TYLunar.SearchNongli(y, m, d);
         if(res != null){
             let year = res.getFullYear();
@@ -147,8 +148,9 @@ export class CalendarView {
         }else{
             this.NlSearch['ResultTX'] = '找不到农历 '
                 + this.NlSearch['Year'] + '年 '
-                + this.NlSearch['Month'] + '月 '
-                + this.NlSearch['Date']
+                + leap
+                + TYLunar.M_ChineseMonthNames[this.NlSearch['Month']] + '月 '
+                + TYLunar.M_DayNames[this.NlSearch['Date']]
 
             this.NlSearch['Result'] = '';
         }
@@ -213,10 +215,11 @@ export class CalendarView {
         this.SelectedDate = date.formate('date');
         this.NlSearch={
             Year: date.getFullYear(),
-            MonthOptions:TYLunar.M_ChineseMonthNames,
-            DateOptions: TYLunar.M_DayNames,
-            Month:TYLunar.M_ChineseMonthNames[0],
-            Date:TYLunar.M_DayNames[0],
+            //MonthOptions:TYLunar.M_ChineseMonthNames,
+            MonthOptions:TYLunar.M_ChineseMonthNames.join('月 '),
+            DateOptions: TYLunar.M_DayNames.join(' '),
+            Month:0,
+            Date:0,
             Leap:false,
             Result: null,
             ResultTX: '',
