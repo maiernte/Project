@@ -103,8 +103,10 @@
             <h5 class="ui dividing header">{{'选择农历时间' | tran:glsetting.lang}}</h5>
             <div class="fields">
                 <div class="inline field">
-                    <input type="number" min="1640" max="2100" [(ngModel)]="NlSearch.Year">
-                    <label>年</label>
+                    <div class="ui transparent input">
+                        <input type="number" min="1640" max="2100" [(ngModel)]="NlSearch.Year">
+                        <label>年</label>
+                    </div>
                 </div>
                 <div class="inline field">
                     <sm-select [Options]="NlSearch.MonthOptions"
