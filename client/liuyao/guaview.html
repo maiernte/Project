@@ -35,12 +35,12 @@
 
     <div class="ui grid" style="margin-left: 5px;">
         <div class="four wide column" style="padding: 0"></div>
-        <div class="five wide column gua mean"
+        <div class="six wide column gua mean"
              [attr.data-content]="Yue.NaYin"
              style="padding-left: 0px;padding-right: 0px;padding-bottom: 0px;">
             {{Yue.Name | tran:glsetting.lang}}月
         </div>
-        <div class="seven wide column gua mean"
+        <div class="six wide column gua mean"
              [attr.data-content]="Ri.NaYin"
              style="padding-left: 0px;padding-right: 0px;padding-bottom: 0px;">
             {{Ri.Name | tran:glsetting.lang}}日&nbsp;
@@ -50,17 +50,17 @@
 
     <div class="ui grid" style="margin-left: 5px;margin-top: 10px;">
         <div class="four wide column"
-             style="padding-left: 0px;padding-right: 0px;">
+             style="padding-left: 0px;padding-right: 0px;"
+              (click)="caigua(-1)">
             {{GuaGong | tran:glsetting.lang}}
         </div>
-        <div class="five wide column gua mean"
+        <div class="six wide column gua mean"
              style="padding-left: 0px;padding-right: 0px;"
              [attr.data-title]="Bengua.title"
              [attr.data-content]="Bengua.content">
             {{Bengua.text | tran:glsetting.lang}}
         </div>
-        <div class="one wide column"></div>
-        <div class="five wide column gua mean"
+        <div class="six wide column gua mean"
              style="padding-left: 0px;padding-right: 0px;"
              [attr.data-title]="Biangua.title"
              [attr.data-content]="Biangua.content">
@@ -74,25 +74,34 @@
                 <td style="padding-left:0;padding-right:0;border-collapse:collapse">
                     {{Shen6[i]| tran}}
                 </td>
-                <td style="padding-left:3px;padding-right:3px;text-align:center;color:lightgrey">
-                    <div class="gua mean" [attr.data-content]="Fuyaos[i].info">
+                <td style="padding-left:3px;padding-right:3px;text-align:center;">
+                    <span class="gua mean" 
+                        [attr.data-content]="Fuyaos[i].info"
+                        [style.color]='Fuyaos[i].color'
+                        (click)="caigua(Fuyaos[i].index)">
                         {{Fuyaos[i].Text | tran}}
-                    </div>
+                    </span>
                 </td>
-                <td style="padding-left:0;padding-right:0;"
-                    class="gua mean"
-                    [attr.data-content]="Benyaos[i].info">
-                    {{Benyaos[i].Text | tran}}
+                <td style="padding-left:0;padding-right:0;">
+                    <span class="gua mean"
+                         [attr.data-content]="Benyaos[i].info" 
+                         [style.color]='Benyaos[i].color'
+                         (click)="caigua(Benyaos[i].index)">
+                        {{Benyaos[i].Text | tran}}
+                    </span>
                     <img [src]="Benyaos[i].Img">
                     {{Benyaos[i].ShiYing | tran}}
                 </td>
                 <td *ngIf="showArrow" style="padding-left:0;padding-right:0;text-align:center">
                     <img [src]="ShiYing[i]" width="16">
                 </td>
-                <td *ngIf="HasBianGua" style="padding-left:0;padding-right:0;margin-right: -10px"
-                    class="gua mean"
-                    [attr.data-content]="Bianyaos[i].info">
-                    {{Bianyaos[i].Text | tran}}
+                <td *ngIf="HasBianGua" style="padding-left:0;padding-right:0;margin-right: -10px">
+                    <span class="gua mean"
+                        [attr.data-content]="Bianyaos[i].info"
+                        [style.color]='Bianyaos[i].color'
+                        (click)="caigua(Bianyaos[i].index)">
+                        {{Bianyaos[i].Text | tran}}
+                    </span>
                     <img [src]="Bianyaos[i].Img">
                 </td>
             </tr>

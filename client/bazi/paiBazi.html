@@ -73,18 +73,23 @@
                 </h5>
                 <div id='bazi-time-gl'>
                     <div class="fields" >
-                        <div class="field">
-                            <label>{{'日期' | tran:glsetting.lang}}</label>
-                            <input type="date" lang="zh" [(ngModel)]='Input.Date'>
+                        <div class="inline field">
+                            <div class="ui transparent input">
+                                <label>{{'日期' | tran:glsetting.lang}}</label>
+                                <input type="date" lang="zh" [(ngModel)]='Input.Date'>
+                            </div>
                         </div>
-                        <div class="field">
-                            <label>{{'时辰' | tran:glsetting.lang}}</label>
-                            <!--<input type="time" lang="zh" [(ngModel)]='Input.Time'>-->
-                            <input type="number" min="0" max="23" [(ngModel)]="Input.HH">
+                        <div class="inline field">
+                            <div class="ui transparent input">
+                                <input type="number" min="0" max="23" [(ngModel)]="Input.HH">
+                                <label>{{'时' | tran:glsetting.lang}}</label>
+                            </div>
                         </div>
-                        <div class="field">
-                            <label>:</label>
-                            <input type="number" min="0" max="59" [(ngModel)]="Input.MM">
+                        <div class="inline field">
+                            <div class="ui transparent input">
+                                <input type="number" min="0" max="59" [(ngModel)]="Input.MM">
+                                <label>{{'分' | tran:glsetting.lang}}</label>
+                            </div>
                         </div>
                     </div>
                 </div>

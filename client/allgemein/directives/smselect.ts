@@ -36,6 +36,7 @@ export class SemanticSelect{
 
     get UseOrigin(){
         let isandroid = navigator.userAgent.match(/Android/i)
+        //isandroid = []
         return isandroid && this.Grouped;
     }
 
@@ -86,6 +87,10 @@ export class SemanticSelect{
         }
 
         if(changes['Options']){
+            if(this.UseOrigin){
+                this.convertOptions();
+            }
+            
             let item = this.getItem(this.Value)
             if(!item && typeof this.Value == 'string'){
                 item = this.Grouped ? this.Options.Groups[0].Items[0] : this.Options.Items[0];
@@ -144,18 +149,19 @@ export class SemanticSelect{
     }
 
     private convertOptions(){
-        console.log('convert options')
         this.Options['Items'] = []
+        
         for(let gp of this.Options.Groups){
             let header = {Value: null, Text: gp.Name}
             this.Options.Items.push(header)
-
+            
             for(let i of gp.Items){
                 this.Options.Items.push(i)
             }
         }
 
-        this.Options.Groups = []
+        //this.Options.Groups = []
+        //console.log('convert options', this.Options)
     }
 }
 

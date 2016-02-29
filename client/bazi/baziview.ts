@@ -285,9 +285,6 @@ export class BaziView{
 
     private paiBazi(params){
         //let params = JSON.parse(this.initdata)
-
-        console.log(params)
-
         var date = params['birthday']
         if(typeof params['birthday'] == 'string'){
             date = new Date(params['birthday']);

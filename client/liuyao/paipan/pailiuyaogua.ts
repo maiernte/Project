@@ -47,10 +47,9 @@ export class PaiLiuyaoGua{
         if(this.GuayaoModel == true){
             return this.convertYaoToName();
         }else{
-            let useTW = false
-            this.bengua = this.tran.transform(this.bengua, [useTW])
-            this.biangua = this.tran.transform(this.biangua, [useTW])
-
+            //let useTW = false
+            //this.bengua = this.tran.transform(this.bengua, [useTW])
+            //this.biangua = this.tran.transform(this.biangua, [useTW])
             return [this.bengua, this.biangua]
         }
     }
@@ -137,7 +136,7 @@ export class PaiLiuyaoGua{
             for (var p = 0; p < pattern.length; p++) {
                 guaIndex = guaIndex ^ pattern[p];
                 var gua = Gua64(guaIndex);
-                gp.Items.push({Name: gua.Name, Text: gua.Name});
+                gp.Items.push({Value: gua.Name, Text: gua.Name});
             };
         }
 

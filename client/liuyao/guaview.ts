@@ -48,9 +48,9 @@ export class GuaView{
 
     @Input() initdata:string
 
-    private fuyaos: Array<Object>;
-    private benyaos: Array<Object>;
-    private bianyaos: Array<Object>;
+    private fuyaos: Array<guayao>;
+    private benyaos: Array<guayao>;
+    private bianyaos: Array<guayao>;
     private shiying: Array<string>;
     private shenshas: Array<Object>;
 
@@ -171,7 +171,7 @@ export class GuaView{
 
         for(let i = 0; i < 6; i++){
             if(gz[i].Index == gzBen[i].Index){
-                this.fuyaos.push({Text: '\u00A0', info: ' '})
+                this.fuyaos.push({Text: '\u00A0', info: ' ', index: -1, color: ''})
                 continue;
             }
 
@@ -181,7 +181,9 @@ export class GuaView{
 
             let obj = {
                 Text: this.simpleShow == 's' ? shen[1] + zhi : shen[0] + zhi + wx,
-                info: this.tran(gz[i].Name + ' —— ' + gz[i].NaYin)
+                info: this.tran(gz[i].Name + ' —— ' + gz[i].NaYin),
+                index: gz[i].Zhi.Index,
+                color: 'lightgrey'
             }
 
             this.fuyaos.push(obj)
@@ -222,7 +224,9 @@ export class GuaView{
                 Shen: shen[0],
                 Img: GuaView.imgs[yaos[i]],
                 ShiYing: txt,
-                info: this.tran(gz[i].Name + ' —— ' + gz[i].NaYin)
+                info: this.tran(gz[i].Name + ' —— ' + gz[i].NaYin),
+                index: gz[i].Zhi.Index,
+                color: 'black'
             }
 
             this.benyaos.push(obj)
@@ -253,7 +257,9 @@ export class GuaView{
                 Text: this.simpleShow == 's' ? shen[1] + zhi : shen[0] + zhi + wx,
                 Shen: shen[0],
                 Img: GuaView.imgs[yaos[i]],
-                info: this.tran(gz[i].Name + ' —— ' + gz[i].NaYin)
+                info: this.tran(gz[i].Name + ' —— ' + gz[i].NaYin),
+                index: gz[i].Zhi.Index,
+                color: 'black'
             }
 
             this.bianyaos.push(obj)
@@ -304,6 +310,59 @@ export class GuaView{
 
     changeQuestion(txt: string){
         this.Info.question = txt;
+    }
+    
+    caigua(index){
+        let chong = (x, y) => {
+            return ((x - y + 12) % 12) == 6
+        }
+        
+        let he = (x, y) => {
+            return ((x + y) == 13) || ((x + y) == 1)
+        }
+        
+        
+        for(let f of this.Fuyaos){
+            if(index == -1){
+                f.color = 'lightgrey'
+            }else if(chong(f.index, index) == true){
+                f.color = 'red'
+            }else if(he(f.index, index) == true){
+                f.color = 'green'
+            }else if (f.index == index){
+                f.color = 'blue'
+            }else{
+                f.color = 'lightgrey'
+            }
+        }
+        
+        for(let f of this.Benyaos){
+            if(index == -1){
+                f.color = 'black'
+            }else if(chong(f.index, index) == true){
+                f.color = 'red'
+            }else if(he(f.index, index) == true){
+                f.color = 'green'
+            }else if (f.index == index){
+                f.color = 'blue'
+            }else{
+                f.color = 'black'
+            }
+        }
+        
+        for(let f of this.Bianyaos){
+            if(index == -1){
+                f.color = 'black'
+            }else if(chong(f.index, index) == true){
+                f.color = 'red'
+            }else if(he(f.index, index) == true){
+                f.color = 'green'
+            }else if (f.index == index){
+                f.color = 'blue'
+            }else{
+                f.color = 'black'
+            }
+        }
     }
 
     ngOnInit(){
@@ -402,4 +461,13 @@ export class GuaView{
         this.Info.question = params['question'] ? params['question'] : ''
         this.Info.type = GuaView.types[parseInt(params['type'])]
     }
+}
+
+interface guayao {
+    Text: string,
+    Shen?: string,
+    Img?: string,
+    info: string,
+    index: number,
+    color: string
 }
