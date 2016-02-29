@@ -8,7 +8,7 @@ import {TranslatePipe} from 'client/allgemein/translatePipe'
 import {GlobalSetting} from  'client/globalsetting'
 
 import {Gua} from "../../lib/base/gua";
-import {GanZhi} from "../../lib/base/ganzhi";
+import {GanZhi, Zhi} from "../../lib/base/ganzhi";
 
 import {SemanticSelect} from 'client/allgemein/directives/smselect'
 
@@ -53,6 +53,9 @@ export class GuaView{
     private bianyaos: Array<guayao>;
     private shiying: Array<string>;
     private shenshas: Array<Object>;
+    private yue: {name: string, color: string, index: number}
+    private ri: {name: string, color: string, index: number}
+    private xunkong: Array<{name: string, color: string, index: number}>
 
     private translate = new TranslatePipe();
 
@@ -63,11 +66,13 @@ export class GuaView{
     }
 
     get Yue(){
-        return this.Gua.Yue;
+        this.yue = (this.yue || {name: this.Gua.Yue.Name, color: 'black', index: this.Gua.Yue.Index})
+        return this.yue
     }
 
     get Ri(){
-        return this.Gua.Ri;
+        this.ri = (this.ri || {name: this.Gua.Ri.Name, color: 'black', index: this.Gua.Ri.Index})
+        return this.ri
     }
 
     get GuaGong(){
@@ -132,12 +137,19 @@ export class GuaView{
 
             for(let c = 0; c < column; c++){
                 if(r * column + c >= this.Gua.ShenShas.length - 1){
-                    rowCollection.push('')
+                    rowCollection.push({name: null, text: ['', ''], index: [-1, -1]})
                 }else{
                     let ss = this.Gua.ShenShas[r * column + c];
+                    let zhis = ss.Result.map(z => Zhi(z))
+                    let count = zhis.length
+
                     let disObj = {
-                        name: '[' + ss.Name + ' - ' + ss.Result.join('') + ']',
-                        wide: ss.Name == '贵人' ? 2 : 1
+                        //name: '[' + ss.Name + ' - ' + ss.Result.join('') + ']',
+                        name: ss.Name,
+                        text: [zhis[0].Name, count == 1 ? '' : zhis[1].Name],
+                        index: [zhis[0].Index, count == 1 ? -1 : zhis[1].Index],
+                        color: ['black', 'black'],
+                        wide: count == 2 ? 2 : 1
                     }
 
                     rowCollection.push(disObj)
@@ -293,13 +305,21 @@ export class GuaView{
         return this.shiying;
     }
 
-    GetShenSha(name: string): string{
-        let xk = this.Gua.ShenShas.filter(ss => ss.Name == name)
-        if(xk.length > 0){
-            return xk[0].Result.join('')
-        }else{
-            return '';
+    get XunKong(){
+        if(!this.xunkong){
+            let xks = this.Gua.ShenShas.filter(ss => ss.Name == '旬空')
+            let zhis = xks[0].Result.map(z => Zhi(z))
+            this.xunkong = []
+            for(let z of zhis){
+                this.xunkong.push({
+                    name: z.Name,
+                    color: 'black',
+                    index: z.Index
+                })
+            }
         }
+
+        return this.xunkong
     }
 
     showSetting() {
@@ -320,7 +340,41 @@ export class GuaView{
         let he = (x, y) => {
             return ((x + y) == 13) || ((x + y) == 1)
         }
-        
+
+        for(let line of this.ShenShas) {
+            for(let ss of line){
+                if(ss.name == null)continue
+
+                for (let idx = 0; idx < 2; idx++) {
+                    if (index == -1) {
+                        ss.color[idx] = 'black'
+                    } else if (chong(ss.index[idx], index) == true) {
+                        ss.color[idx] = 'red'
+                    } else if (he(ss.index[idx], index) == true) {
+                        ss.color[idx] = 'green'
+                    } else if (ss.index[idx] == index) {
+                        ss.color[idx] = 'blue'
+                    } else {
+                        ss.color[idx] = 'black'
+                    }
+                }
+            }
+        }
+
+        let riyue = [this.Yue, this.Ri].concat(this.XunKong)
+        for(let f of riyue){
+            if(index == -1){
+                f.color = 'black'
+            }else if(chong(f.index % 12, index) == true){
+                f.color = 'red'
+            }else if(he(f.index % 12, index) == true){
+                f.color = 'green'
+            }else if (f.index % 12 == index){
+                f.color = 'blue'
+            }else{
+                f.color = 'black'
+            }
+        }
         
         for(let f of this.Fuyaos){
             if(index == -1){

@@ -29,22 +29,36 @@
         <div class="column" *ngFor="#ss of sslist;"
              [style.padding-top]="row > 0 ? 0 : null"
              style="padding-left: 0px;padding-bottom: 0px;padding-right:0;margin-right: -10px">
-            {{ss.name | tran:glsetting.lang}}
+            <div *ngIf="ss.name != null">
+                [
+                  {{ss.name | tran:glsetting.lang}} -
+                  <span [style.color]='ss.color[0]'>{{ss.text[0] | tran:glsetting.lang}}</span>
+                  <span [style.color]='ss.color[1]'>{{ss.text[1] | tran:glsetting.lang}}</span>
+                ]
+            </div>
+
         </div>
     </div>
 
     <div class="ui grid" style="margin-left: 5px;">
         <div class="four wide column" style="padding: 0"></div>
         <div class="six wide column gua mean"
+             [style.color]='Yue.color'
              [attr.data-content]="Yue.NaYin"
              style="padding-left: 0px;padding-right: 0px;padding-bottom: 0px;">
-            {{Yue.Name | tran:glsetting.lang}}月
+            {{Yue.name | tran:glsetting.lang}}月
         </div>
         <div class="six wide column gua mean"
              [attr.data-content]="Ri.NaYin"
              style="padding-left: 0px;padding-right: 0px;padding-bottom: 0px;">
-            {{Ri.Name | tran:glsetting.lang}}日&nbsp;
-            (旬空: {{GetShenSha('旬空') | tran:glsetting.lang}})
+            <span [style.color]='Ri.color'>
+                {{Ri.name | tran:glsetting.lang}}日
+            </span>
+            &nbsp;
+            (旬空:
+            <span [style.color]='XunKong[0].color'>{{XunKong[0].name | tran:glsetting.lang}}</span>
+            <span [style.color]='XunKong[1].color'>{{XunKong[1].name | tran:glsetting.lang}}</span>
+            )
         </div>
     </div>
 
