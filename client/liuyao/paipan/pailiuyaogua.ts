@@ -47,9 +47,9 @@ export class PaiLiuyaoGua{
         if(this.GuayaoModel == true){
             return this.convertYaoToName();
         }else{
-            //let useTW = false
-            //this.bengua = this.tran.transform(this.bengua, [useTW])
-            //this.biangua = this.tran.transform(this.biangua, [useTW])
+            // let useTW = false
+            // this.bengua = this.tran.transform(this.bengua, [useTW])
+            // this.biangua = this.tran.transform(this.biangua, [useTW])
             return [this.bengua, this.biangua]
         }
     }
@@ -151,6 +151,11 @@ export class PaiLiuyaoGua{
     }
 
     private convertYaoToName(){
+        let notset = this.SetedYaos.filter(y => y == 4)
+        if(notset.length > 0){
+            return {error: '六个爻位必须都赋值才能排卦!'}
+        }
+
         let benText = ''
         let bianText = ''
         for(let idx = 5; idx >= 0; idx--){

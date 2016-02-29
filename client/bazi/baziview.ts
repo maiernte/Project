@@ -120,15 +120,17 @@ export class BaziView{
 
         let endDate = this.Bazi.DaYun[0].Start;
 
-        let befor = {Title: '起运前 ', Liunian: null}
+        let befor = {Title: '起运前 ', Liunian: null, Index: -1}
         befor.Liunian = this.Bazi.CalcLiuNian(this.Bazi.Birthday.getFullYear(), endDate.getFullYear())
         this.liunian.push(befor);
 
+        let index = 0
         for(let dy of this.Bazi.DaYun){
             let timeInfo = dy.Start.toChinaString(false);
 
             let obj = {
                 Title: dy.GZ.Name + '运 (' + timeInfo + ')',
+                Index: index++,
                 Liunian: this.Bazi.CalcLiuNian(dy.Start.getFullYear(), dy.End.getFullYear())
             }
 
@@ -233,13 +235,33 @@ export class BaziView{
         }
     }
 
-    showYuanJu(){
+    showYuanJu(dayunindex){
         let y = this.Bazi.Y
         let m = this.Bazi.M
         let d = this.Bazi.D
         let t = this.Bazi.T
 
         let gender = this.Info.Gender
+        let dayun = {DaYun: ['', '', '', '', ''], NaYin: '', ShenSha: ''}
+        if(dayunindex >= 0){
+            let dy = this.DaYun[dayunindex]
+            let infos = [
+                '大运: ',
+                '(' + dy.GZ.Shen10Gan[1] + ')',
+                dy.GZ.Gan.Name + dy.GZ.Zhi.Name,
+                '(' + dy.GZ.Shen10Zhi[1] + ')',
+                ' | ' + dy.GZ.ChangSheng
+            ]
+
+            if(!dy.ShenSha){
+                let ss = this.Bazi.CalcShenSha(dy.GZ)
+                dy.ShenSha = ss == '' ? '无' : ss;
+            }
+
+            dayun.DaYun = infos
+            dayun.NaYin = '纳音: ' + dy.GZ.NaYin
+            dayun.ShenSha = '神煞: ' + dy.ShenSha
+        }
 
         let dom = `
             <table class='ui unstackable compact table' style="background-color:transparent;padding:0; margin:0;border-color: transparent">
@@ -273,6 +295,17 @@ export class BaziView{
                     </td>
                 </tr>
             </table>
+            <div class="ui items" style="padding-top: 0;margin-top: 0;text-align: left">
+                <div>
+                    <span>${dayun.DaYun[0]}</span>
+                    <span style="color: gray">${dayun.DaYun[1]}</span>
+                    <span style="font-weight: bold">${dayun.DaYun[2]}</span>
+                    <span style="color: gray">${dayun.DaYun[3]}</span>
+                    <span>${dayun.DaYun[4]}</span>
+                </div>
+                <div>${dayun.NaYin}</div>
+                <div>${dayun.ShenSha}</div>
+            </div>
         `
 
         alertify.set('notifier','position', 'top-right');

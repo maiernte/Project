@@ -4,9 +4,9 @@
             {{Info.Title | tran:glsetting.lang}}
         </a>
 
-        <div class="ui top right attached label" (click)="showYuanJu()">
+        <!--<div class="ui top right attached label" (click)="showYuanJu()">
             <i class="pin icon"></i>
-        </div>
+        </div>-->
     </div>
 
     <div class="ui fluid accordion bazi">
@@ -123,16 +123,16 @@
                     <div>{{dy.Old}}</div>
                 </div>
             </div>
-            <div class="ui form">
-                <div class="inline field">
+            <div class="ui items" style="padding-top: 0;margin-top: 0;color: ">
+                <div class="item">
                     <label>{{'起始: ' | tran:glsetting.lang}}</label>
                     {{DaYunDetail.Time | tran:glsetting.lang}}
                 </div>
-                <div class="inline field">
+                <div class="item">
                     <label>{{'纳音: ' | tran:glsetting.lang}}</label>
                     {{DaYunDetail.NaYin | tran:glsetting.lang}}
                 </div>
-                <div class="inline field">
+                <div class="item">
                     <label>{{'神煞: ' | tran:glsetting.lang}}</label>
                     {{DaYunDetail.ShenSha | tran:glsetting.lang}}
                 </div>
@@ -145,17 +145,21 @@
             {{'流年小运' | tran:glsetting.lang}}
         </div>
         <div class="content">
-            <div class="accordion" style="margin-left: 10px">
+            <div class="accordion" style="margin-left: 10px;margin-top: 0;padding-top: 0">
                 <div *ngFor="#ln of LiuNian">
                     <div class="title">
                         <i class="dropdown icon"></i>
                         {{ln.Title | tran:glsetting.lang}}
                     </div>
+
                     <div class="content">
                         <div class="ui grid">
                             <div class="two wide column"
                                  style="padding-left: 0;padding-right: 0;text-align: center">
                                 {{'年份' | tran:glsetting.lang}}
+                                <a (click)="showYuanJu(ln.Index)">
+                                    <i class="pin icon"></i>
+                                </a>
                             </div>
                             <div class="two wide column" style="padding-left: 0;padding-right: 0;text-align: center">
                                 {{'岁数' | tran:glsetting.lang}}
@@ -168,6 +172,7 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 {{'小运' | tran:glsetting.lang}}
                             </div>
+
                         </div>
 
                         <div class="ui grid" *ngFor="#y of ln.Liunian">
