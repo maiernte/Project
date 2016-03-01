@@ -3,10 +3,6 @@
         <a class="ui blue ribbon label" (click)="showSetting()">
             {{Info.Title | tran:glsetting.lang}}
         </a>
-
-        <!--<div class="ui top right attached label" (click)="showYuanJu()">
-            <i class="pin icon"></i>
-        </div>-->
     </div>
 
     <div class="ui fluid accordion bazi">
@@ -157,9 +153,6 @@
                             <div class="two wide column"
                                  style="padding-left: 0;padding-right: 0;text-align: center">
                                 {{'年份' | tran:glsetting.lang}}
-                                <a (click)="showYuanJu(ln.Index)">
-                                    <i class="pin icon"></i>
-                                </a>
                             </div>
                             <div class="two wide column" style="padding-left: 0;padding-right: 0;text-align: center">
                                 {{'岁数' | tran:glsetting.lang}}
@@ -167,6 +160,9 @@
                             <div class="six wide column">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 {{'流年' | tran:glsetting.lang}}
+                                <a (click)="showYuanJu(ln.Index)">
+                                    <i class="pin icon"></i>
+                                </a>
                             </div>
                             <div class="six wide column">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -223,25 +219,25 @@
         </div>
 
         <div class="four fields">
-            <div class="field">
+            <div class="inline field">
                 <div class="ui checkbox">
                     <input type="checkbox" [(ngModel)]="ShowItem.MingJu">
                     <label>{{'命局' | tran:glsetting.lang}}</label>
                 </div>
             </div>
-            <div class="field">
+            <div class="inline field">
                 <div class="ui checkbox">
                     <input type="checkbox" [(ngModel)]="ShowItem.ShenSha">
                     <label>{{'神煞' | tran:glsetting.lang}}</label>
                 </div>
             </div>
-            <div class="field">
+            <div class="inline field">
                 <div class="ui checkbox">
                     <input type="checkbox" [(ngModel)]="ShowItem.DaYun">
                     <label>{{'大运' | tran:glsetting.lang}}</label>
                 </div>
             </div>
-            <div class="field">
+            <div class="inline field">
                 <div class="ui checkbox">
                     <input type="checkbox" [(ngModel)]="ShowItem.LiuNian">
                     <label>{{'流年' | tran:glsetting.lang}}</label>

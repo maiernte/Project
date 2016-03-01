@@ -9,6 +9,7 @@ import {GlobalSetting} from  'client/globalsetting'
 
 import {Gua} from "../../lib/base/gua";
 import {GanZhi, Zhi} from "../../lib/base/ganzhi";
+import {TYDate} from '../../lib/lunar/tylunar'
 
 import {SemanticSelect} from 'client/allgemein/directives/smselect'
 
@@ -47,6 +48,7 @@ export class GuaView{
     showArrow = true
 
     @Input() initdata:string
+    Tips: string;
 
     private fuyaos: Array<guayao>;
     private benyaos: Array<guayao>;
@@ -430,6 +432,7 @@ export class GuaView{
         this.onInitParse(params);
         this.onInitBaseInfo(params);
         this.simpleShow = this.glsetting.GetSetting('gua-simple') == true ? 's' : 'f'
+        this.Tips = ''
 
         let ben = params['gua'][0]
         let bian = params['gua'][1]
@@ -445,6 +448,13 @@ export class GuaView{
                                ${time.getHours()}时
                                ${time.getMinutes()}分`
             this.Gua = new Gua(time, null, null, ben, bian)
+
+            let tydate = new TYDate(time)
+            if(tydate.JQtime){
+                //console.log(tydate.JQtime)
+                let items = tydate.JQtime.split(':')
+                this.Tips = `提示：当日${items[0]}时${items[1]}分换月令。`
+            }
         }
 
         this.shenshaColumnCount = this.glsetting.GetSetting('gua-shensha')
@@ -484,6 +494,13 @@ export class GuaView{
 
     changeShenShaSetting(value){
         this.shenshaColumnCount = parseInt(value.toString()) + 4
+    }
+
+    showInfo(){
+        let msg = `<div>点击爻位激活彩卦</div><br>
+        <div>点击卦宫恢复颜色</div>`
+
+        this.glsetting.Notify(msg, 1)
     }
 
     private tran(txt): string{

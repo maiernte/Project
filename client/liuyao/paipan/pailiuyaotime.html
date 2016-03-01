@@ -13,7 +13,8 @@
                     <input type="date"
                            lang="zh"
                            [(ngModel)]='InputTime.Date'
-                           id='paigua-datepicker'>
+                           id='paigua-datepicker'
+                           style="margin-left: 5px">
                 </div>
                 
             </div>
@@ -37,13 +38,19 @@
         <div class="fields">
             <div class="inline field">
                 <label>{{'月令' | tran:glsetting.lang}}</label>
-                <sm-select [Options]="GanZhiNamesFull"
+                <!--<sm-select [Options]="GanZhiNamesFull"
+                           [Value]="InputTime.Yue"
+                           (Value)="InputTime.Yue = $event"></sm-select>-->
+                <sm-select [Options]="'jiazi-full'"
                            [Value]="InputTime.Yue"
                            (Value)="InputTime.Yue = $event"></sm-select>
             </div>
             <div class="inline field">
                 <label>{{'日令' | tran:glsetting.lang}}</label>
-                <sm-select [Options]="GanZhiNames"
+                <!--<sm-select [Options]="GanZhiNames"
+                           [Value]="InputTime.Ri"
+                           (Value)="InputTime.Ri = $event"></sm-select>-->
+                <sm-select [Options]="'jiazi'"
                            [Value]="InputTime.Ri"
                            (Value)="InputTime.Ri = $event"></sm-select>
             </div>

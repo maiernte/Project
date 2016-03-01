@@ -3,7 +3,10 @@
         <a class="ui teal ribbon label" (click)="showSetting()">
             {{title | tran:glsetting.lang}}
         </a>
-        {{Yue.Name | tran:glsetting.lang}}月 {{Ri.Name | tran:glsetting.lang}}日
+        {{Yue.name | tran:glsetting.lang}}月 {{Ri.name | tran:glsetting.lang}}日
+        <a class="ui top right attached icon basic label" (click)="showInfo()">
+            <i class="info icon"></i>
+        </a>
     </div>
 
     <div class="ui fluid accordion question" style="margin-bottom: 5px">
@@ -30,11 +33,9 @@
              [style.padding-top]="row > 0 ? 0 : null"
              style="padding-left: 0px;padding-bottom: 0px;padding-right:0;margin-right: -10px">
             <div *ngIf="ss.name != null">
-                [
-                  {{ss.name | tran:glsetting.lang}} -
+                [{{ss.name | tran:glsetting.lang}} -
                   <span [style.color]='ss.color[0]'>{{ss.text[0] | tran:glsetting.lang}}</span>
-                  <span [style.color]='ss.color[1]'>{{ss.text[1] | tran:glsetting.lang}}</span>
-                ]
+                  <span [style.color]='ss.color[1]'>{{ss.text[1] | tran:glsetting.lang}}</span>]
             </div>
 
         </div>
@@ -121,6 +122,10 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="ui tag label" *ngIf="Tips != ''">
+        {{Tips | tran:glsetting.lang}}
+    </div>
 </div>
 
 <div class="ui attached segment transition hidden gua setting">

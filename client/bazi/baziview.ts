@@ -308,7 +308,7 @@ export class BaziView{
             </div>
         `
 
-        alertify.set('notifier','position', 'top-right');
+        alertify.set('notifier','position', 'top-left');
         alertify.notify(dom, "warning", 0)
     }
 

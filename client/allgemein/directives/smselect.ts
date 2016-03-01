@@ -102,10 +102,6 @@ export class SemanticSelect{
 
     changeValue(event){
         let value = event.srcElement['value']
-        /*if(typeof value == "string"){
-            value = this.tran.transform(value, false)
-        }*/
-
         this.valueChanged.emit(value)
     }
 
@@ -134,8 +130,12 @@ export class SemanticSelect{
     }
 
     private buildOptions(){
-        //console.log('option is string')
         let text = this.Options.toString()
+        if(text == 'jiazi' || text == 'jiazi-full'){
+            this.buildJiazi(text == 'jiazi-full')
+            return
+        }
+
         let items = text.split(' ')
         let options = {Items: []}
         let value = 0;
@@ -162,6 +162,37 @@ export class SemanticSelect{
 
         //this.Options.Groups = []
         //console.log('convert options', this.Options)
+    }
+
+    private buildJiazi(full){
+        let gan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
+        let zhi = [ '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
+
+        let option = {Groups: []}
+        if(full == true){
+            let gp = {Name: '空', Items: []}
+            option.Groups.push(gp)
+
+            for(let z of zhi){
+                gp.Items.push({Value: z, Text: z})
+            }
+            /*gp.Items.concat(gan.map(g => {
+                return {Value: g, Text: g}
+            }))*/
+        }
+
+        for(let g = 0; g < 10; g++){
+            let gp = {Name: gan[g], Items: []}
+            option.Groups.push(gp)
+
+            for(let z = 0; z < 12; z++){
+                if((g % 2) == (z % 2)){
+                    gp.Items.push({Value: gan[g] + zhi[z], Text: gan[g] + zhi[z]})
+                }
+            }
+        }
+
+        this.Options = option
     }
 }
 
