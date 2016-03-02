@@ -59,7 +59,7 @@ export class RecordView{
         this.bookname = book.name
 
         let rd = LocalRecords.findOne({_id: this.recordid, book: this.bookid})
-        console.log("init recordview", this.bookid, this.recordid, rd)
+        //console.log("init recordview", this.bookid, this.recordid, rd)
         this.Record = new RecordHelper(rd);
     }
 

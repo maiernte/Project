@@ -21,7 +21,6 @@ flemay:less-autoprefixer
 shcherbin:flex-grid
 cloudant:couchdb
 ground:db
-mediumeditor:mediumeditor
 accounts-password
 gfk:mailgun-api
 email
@@ -32,3 +31,4 @@ meteorhacks:kadira
 mdg:reload-on-resume
 launch-screen
 ovcharik:alertifyjs
+themeteorites:quilljs

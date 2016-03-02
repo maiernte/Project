@@ -312,7 +312,7 @@ export class BookContent{
         }
 
         let sort = this.recordsort == '创建时间' ? {created: 'desc'} : {modified: 'desc'}
-        console.log('sort:', sort)
+        //console.log('sort:', sort)
         let records = LocalRecords
             .find(selector,
                   {fields: {description: 0, img: 0, link: 0}, sort: sort})

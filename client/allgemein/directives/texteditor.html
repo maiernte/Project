@@ -1,0 +1,58 @@
+<div class="ui attached samll menu" id="quill-toolbar">
+    <div class="ui animated fade primary button item" (click)="Save()">
+        <div class="visible content">
+            <i class="save icon"></i>
+        </div>
+        <div class="hidden content">
+            {{'保存' | tran:glsetting.lang}}
+        </div>
+    </div>
+    <div class="ui animated fade primary button item" (click)="Save(true)">
+        <div class="visible content">
+            <i class="reply all icon"></i>
+        </div>
+        <div class="hidden content">
+            {{'放弃' | tran:glsetting.lang}}
+        </div>
+    </div>
+    <div class="ui animated fade primary button item ql-bold">
+        <div class="visible content">
+            <i class="bold icon"></i>
+        </div>
+        <div class="hidden content">
+            {{'加粗' | tran:glsetting.lang}}
+        </div>
+    </div>
+    <div class="ui animated fade primary button item ql-italic">
+        <div class="visible content">
+            <i class="italic icon"></i>
+        </div>
+        <div class="hidden content">
+            {{'斜体' | tran:glsetting.lang}}
+        </div>
+    </div>
+    <div class="ui animated fade primary button item ql-underline">
+        <div class="visible content">
+            <i class="underline icon"></i>
+        </div>
+        <div class="hidden content">
+            {{'下划' | tran:glsetting.lang}}
+        </div>
+    </div>
+    <div class="ui dropdown item ql-size">
+        <div class="default text">{{'字体' | tran:glsetting.lang}}</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            <div class="item" data-value="10px">{{'小号' | tran:glsetting.lang}}</div>
+            <div class="item" data-value="13px">{{'中号' | tran:glsetting.lang}}</div>
+            <div class="item" data-value="18px">{{'大号' | tran:glsetting.lang}}</div>
+            <div class="item" data-value="32px">{{'特大' | tran:glsetting.lang}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="ui attached segment">
+    <div id="quill-editor">
+
+    </div>
+</div>

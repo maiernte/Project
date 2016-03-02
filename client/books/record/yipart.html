@@ -29,18 +29,18 @@
         
         <div class="ui attached segment transition hidden" 
             style="padding: 0;" 
-            id="bookrecord-edit" >
-            <div class="ui buttons">
-                <div class="ui icon button" [class.disabled]="EditModel"
+            id="bookrecord-edit">
+            <div class="ui buttons" [hidden]="EditModel">
+                <div class="ui icon button"
                      (click)="EditModel = true">
                     <i class="edit icon"></i>
                     {{'编辑' | tran}}
                 </div>
-                <div class="ui icon button" [class.disabled]="!EditModel"
+                <!--<div class="ui icon button" [class.disabled]="!EditModel"
                      (click)="EditModel = false">
                     <i class="save icon"></i>
                     {{'保存' | tran}}
-                </div>
+                </div>-->
                 <div class="ui icon button" (click)="insertLink()">
                     <i class="file image outline icon"></i>
                     {{'外链图片' | tran}}
@@ -54,37 +54,39 @@
             </div>
         </div>
 
-        <table class="ui attached table">
-            <tbody>
-            <tr>
-                <td class="collapsing" style="font-weight: bold">
-                    <i class="info teal icon"></i>
-                    {{QuestionT | tran:glsetting.lang}}
-                </td>
-                <td class="editable question">
-
-                </td>
-            </tr>
-            <tr>
-                <td class="collapsing" style="font-weight: bold">
-                    <i class="bookmark icon" [class.teal]="Feed"></i>
-                    {{'反馈: ' | tran:glsetting.lang}}
-                </td>
-                <td class="editable feed" align="left">
-
-                </td>
-            </tr>
-            <tr>
-                <td class="collapsing" style="font-weight: bold">
-                    <i class="code outline teal icon"></i>
-                    {{'解读: ' | tran:glsetting.lang}}
-                </td>
-                <td class="editable description" align="left">
-
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="ui attached segment">
+            <div class="ui divided items">
+                <div class="inline field item">
+                    <div class="ui transparent input">
+                        <label style="font-weight: bold;margin-right: 5px"><i class="info teal icon"></i>
+                            {{QuestionT | tran:glsetting.lang}}
+                        </label>
+                        <span *ngIf="!EditModel">{{Question | tran:glsetting.lang}}</span>
+                        <input type="text" [(ngModel)]="Question" *ngIf="EditModel">
+                    </div>
+                </div>
+                <div class="inline field item">
+                    <div class="ui transparent input">
+                        <label style="font-weight: bold;margin-right: 5px"><i class="bookmark icon"></i>
+                            {{'反馈: ' | tran:glsetting.lang}}
+                        </label>
+                        <span *ngIf="!EditModel">{{FeedBack | tran:glsetting.lang}}</span>
+                        <input type="text" [(ngModel)]="FeedBack" *ngIf="EditModel">
+                    </div>
+                </div>
+                <div class="inline field item">
+                    <label style="font-weight: bold;margin-right: 5px">
+                        <i class="code outline teal icon"></i>
+                        {{'解读: ' | tran:glsetting.lang}}
+                    </label>
+                    <div class="editable description" [hidden]="EditModel"></div>
+                </div>
+                <div class="itme" *ngIf="EditModel">
+                    <ty-editor [Content]="Description"
+                               (onsave)="editorSaved($event)"></ty-editor>
+                </div>
+            </div>
+        </div>
 
         <div class="ui attached segment" *ngIf="UpLoading">
             <div class="ui progress success" id="progressUploadPic">

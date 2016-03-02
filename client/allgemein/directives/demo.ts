@@ -5,13 +5,14 @@ import {Component, Inject} from 'angular2/core'
 import {TranslatePipe} from 'client/allgemein/translatePipe'
 import {GlobalSetting} from  'client/globalsetting'
 import {SemanticSelect, tyitem, tyoption} from './smselect'
+import {TYEditor} from './texteditor'
 
 declare var jQuery:any;
 
 @Component({
     selector: "huahe-demo",
     pipes:[TranslatePipe],
-    directives: [SemanticSelect],
+    directives: [SemanticSelect, TYEditor],
     templateUrl: 'client/allgemein/directives/demo.html',
 })
 

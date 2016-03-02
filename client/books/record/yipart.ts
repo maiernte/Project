@@ -2,6 +2,7 @@
 /// <reference path="../../../typings/book.d.ts" />
 
 import {Component, Inject, ContentChild, Input, ElementRef, NgZone} from 'angular2/core'
+import {NgIf} from 'angular2/common'
 import {Router, RouteParams} from 'angular2/router'
 
 import {TranslatePipe} from 'client/allgemein/translatePipe'
@@ -14,6 +15,7 @@ import {LocalRecords, LocalBooks} from 'collections/books'
 import {RecordHelper} from './recordhelper'
 
 import {TYUploader} from 'lib/qiniu/tyuploader'
+import {TYEditor} from 'client/allgemein/directives/texteditor'
 
 declare var jQuery;
 declare var MediumEditor;
@@ -24,7 +26,7 @@ declare var alertify;
     selector: "yixue-part",
     pipes:[TranslatePipe],
     templateUrl: "client/books/record/yipart.html",
-    directives: []
+    directives: [TYEditor, NgIf]
 })
 export class YixuePart{
     //private static qiniuUploader;
@@ -33,7 +35,6 @@ export class YixuePart{
 
     private translator: TranslatePipe;
     private editmodel = false;
-    private editor;
     private images: Array<string>;
     private links: Array<string>;
     private progressValue = 0
@@ -52,6 +53,10 @@ export class YixuePart{
     PictureUrl = ''
     Morefunction = false
 
+    Question: string
+    FeedBack: string
+    Description: string
+
     constructor(private router: Router,
                 private routeParams: RouteParams,
                 private rootElement: ElementRef,
@@ -66,11 +71,6 @@ export class YixuePart{
         }
         
         this.editmodel = false
-        
-        if(!!this.editor){
-            this.editor.destroy();
-            this.editor = null;
-        }
     }
 
     get EditModel(){
@@ -79,20 +79,11 @@ export class YixuePart{
 
     set EditModel(value){
         this.editmodel = value;
-
-        if(value == true){
-            setTimeout(() => {
-                let placeholder = '点击编辑按钮, 然后输入内容.'
-                this.editor = new MediumEditor('.editable', {
-                    placeholder: {
-                        text: this.translator.transform(placeholder, [this.glsetting.lang])
-                    }
-                });
-            }, 500);
+        if(value == false){
+            let domDesc = jQuery(this.rootElement.nativeElement).find('.editable.description')
+            domDesc.html(this.Description)
         }else{
-            this.saveChanging();
-            this.editor.destroy();
-            this.editor = null;
+
         }
     }
 
@@ -106,10 +97,6 @@ export class YixuePart{
 
     get IsCordova(){
         return this.glsetting.IsCordova
-    }
-
-    get Feed(){
-        return this.record.Feed
     }
 
     get Images(){
@@ -146,9 +133,6 @@ export class YixuePart{
         return this.IsGua ? "问念: " : "命主: "
     }
 
-    get Question(){
-        return this.record.Question;
-    }
 
     copyLink(link: string){
         YixuePart.copyLink = link
@@ -248,14 +232,18 @@ export class YixuePart{
     ngOnInit(){
         this.ButtonId = 'upbtn-' + this.glsetting.RandomStr(5)
 
-        let domQuestion = jQuery(this.rootElement.nativeElement).find('.editable.question')
+        /*let domQuestion = jQuery(this.rootElement.nativeElement).find('.editable.question')
         domQuestion.text((this.record.Question || ''))
 
         let domFeed = jQuery(this.rootElement.nativeElement).find('.editable.feed')
         domFeed.text((this.record.FeedText || ''))
 
         let domDesc = jQuery(this.rootElement.nativeElement).find('.editable.description')
-        domDesc.html((this.record.Description || ''))
+        domDesc.html((this.record.Description || ''))*/
+
+        this.Question = (this.record.Question || '')
+        this.FeedBack = (this.record.FeedText || '')
+        this.Description = (this.record.Description || '')
     }
 
     ngAfterViewInit(){
@@ -269,6 +257,21 @@ export class YixuePart{
     
         this.initQiNiuBook();
         this.AllowQiniu = true;
+
+        this.EditModel = false
+    }
+
+    editorSaved(content){
+        if(content){
+            this.Description = content
+            this.saveChanging();
+        }else{
+            console.log("user cancel")
+            this.Question = (this.record.Question || '')
+            this.FeedBack = (this.record.FeedText || '')
+        }
+
+        this.EditModel = false
     }
 
     syncRecord(){
@@ -391,18 +394,9 @@ export class YixuePart{
     }
 
     private saveChanging(){
-        let dom = jQuery(this.rootElement.nativeElement).find('.editable.question')
-        let question = dom[0].innerText;
-
-        dom = jQuery(this.rootElement.nativeElement).find('.editable.feed')
-        let feed = dom[0].innerText;
-
-        dom = jQuery(this.rootElement.nativeElement).find('.editable.description')
-        let desc = dom[0].innerHTML;
-
-        this.record.Save(question, feed, desc).then(res => {
-            if(this.guaview) this.guaview.changeQuestion(question);
-            if(this.baziview) this.baziview.changeQuestion(question);
+        this.record.Save(this.Question, this.FeedBack, this.Description).then(res => {
+            if(this.guaview) this.guaview.changeQuestion(this.Question);
+            if(this.baziview) this.baziview.changeQuestion(this.Question);
             this.glsetting.Notify('成功更新到数据库！', 1)
         }).catch(err => {
             this.glsetting.Alert('更新数据失败', err.toString())

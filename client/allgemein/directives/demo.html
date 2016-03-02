@@ -31,4 +31,7 @@
     <sm-select [Options]="'简体 正体'"></sm-select>
 
     <sm-select [Options]="'jiazi-full'"></sm-select>
+
+    <ty-editor [Content]="'      '"
+               (onsave)="editorSaved($event)"></ty-editor>
 </div>
