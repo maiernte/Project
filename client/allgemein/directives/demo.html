@@ -34,4 +34,6 @@
 
     <ty-editor [Content]="'      '"
                (onsave)="editorSaved($event)"></ty-editor>
+
+    <input type="file" name="" (change)="loadExternSqlite($event)"/>
 </div>

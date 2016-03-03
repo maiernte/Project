@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd628d0f-b330-4283-9dbe-d11a93ac6559" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/allgemein/directives/texteditor.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/allgemein/directives/texteditor.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/HuaheC9.iml" afterPath="$PROJECT_DIR$/.idea/HuaheC9.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_browser.xml" afterPath="$PROJECT_DIR$/.idea/libraries/meteor_packages_auto_import_browser.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/books/tysqlite.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/lib/sql.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/allgemein/directives/demo.html" afterPath="$PROJECT_DIR$/client/allgemein/directives/demo.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/allgemein/directives/demo.ts" afterPath="$PROJECT_DIR$/client/allgemein/directives/demo.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/books/bookcontent.ts" afterPath="$PROJECT_DIR$/client/books/bookcontent.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/books/record/recordview.ts" afterPath="$PROJECT_DIR$/client/books/record/recordview.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/books/record/yipart.html" afterPath="$PROJECT_DIR$/client/books/record/yipart.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/books/bookmarket.html" afterPath="$PROJECT_DIR$/client/books/bookmarket.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/books/bookmarket.ts" afterPath="$PROJECT_DIR$/client/books/bookmarket.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/books/record/yipart.ts" afterPath="$PROJECT_DIR$/client/books/record/yipart.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/liuyao/guaview.html" afterPath="$PROJECT_DIR$/client/liuyao/guaview.html" />
     </list>
     <ignored path="HuaheC9.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,63 +30,56 @@
     <favorites_list name="HuaheC9" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5010556">
+    <splitter split-orientation="horizontal" split-proportion="0.48627728">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="paiBazi.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/bazi/paiBazi.html">
+          <file leaf-file-name="bookmarket.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/books/bookmarket.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-10.0">
-                  <caret line="30" column="24" selection-start-line="30" selection-start-column="20" selection-end-line="31" selection-end-column="52" />
-                  <folding>
-                    <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="texteditor.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/allgemein/directives/texteditor.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-7.7777777">
-                  <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+                <state vertical-scroll-proportion="-18.125">
+                  <caret line="31" column="86" selection-start-line="31" selection-start-column="86" selection-end-line="31" selection-end-column="86" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="pailiuyaogua.ts" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/client/liuyao/paipan/pailiuyaogua.ts">
+          <file leaf-file-name="demo.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/allgemein/directives/demo.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4742698">
-                  <caret line="152" column="31" selection-start-line="152" selection-start-column="31" selection-end-line="152" selection-end-column="31" />
+                <state vertical-scroll-proportion="-23.125">
+                  <caret line="37" column="57" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="66" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="demo.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/allgemein/directives/demo.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-7.2222223">
+                  <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="tysqlite.ts" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/client/books/tysqlite.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.58414465">
+                  <caret line="137" column="21" selection-start-line="137" selection-start-column="21" selection-end-line="137" selection-end-column="21" />
                   <folding>
-                    <element signature="n#!!block;n#initGuaNames#0;n#PaiLiuyaoGua#0" expanded="false" />
-                    <element signature="n#!!block;n#initGuaNamesShang#0;n#PaiLiuyaoGua#0" expanded="false" />
-                    <element signature="n#!!block;n#initGuaNamesGong#0;n#PaiLiuyaoGua#0" expanded="false" />
-                    <element signature="n#!!block;n#showAnimate#0;n#PaiLiuyaoGua#0" expanded="false" />
+                    <element signature="n#!!block;n#convertDataURIToBinary#0;n#TYSqlite#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="yipart.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/books/record/yipart.ts">
+          <file leaf-file-name="paiLiuyao.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/liuyao/paiLiuyao.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-6.703704">
-                  <caret line="266" column="32" selection-start-line="266" selection-start-column="32" selection-end-line="266" selection-end-column="32" />
-                  <folding>
-                    <element signature="n#!!block;n#initQiNiuBook#0;n#YixuePart#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="setting.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/allgemein/setting.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-7.5">
-                  <caret line="12" column="26" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="26" />
+                <state vertical-scroll-proportion="-0.5555556">
+                  <caret line="68" column="47" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
                   <folding />
                 </state>
               </provider>
@@ -101,80 +89,111 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="yipart.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/books/record/yipart.html">
+          <file leaf-file-name="bookmarket.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/books/bookmarket.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-15.625">
-                  <caret line="73" column="83" selection-start-line="73" selection-start-column="83" selection-end-line="73" selection-end-column="83" />
-                  <folding>
-                    <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#label#0;n#div#2;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-                    <marker date="1456945559000" expanded="true" signature="2290:4007" placeholder="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="recordview.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/books/record/recordview.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-7.5555553">
-                  <caret line="43" column="74" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
+                <state vertical-scroll-proportion="-3.425926">
+                  <caret line="137" column="55" selection-start-line="137" selection-start-column="55" selection-end-line="137" selection-end-column="55" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="bookcontent.ts" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/client/books/bookcontent.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.35465926">
-                  <caret line="293" column="49" selection-start-line="293" selection-start-column="49" selection-end-line="293" selection-end-column="49" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="texteditor.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/allgemein/directives/texteditor.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-2.0">
-                  <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="demo.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/allgemein/directives/demo.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-8.888889">
-                  <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="setting.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/allgemein/setting.ts">
+          <file leaf-file-name="bookmanager.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/books/bookmanager.ts">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="-0.0">
-                  <caret line="2" column="37" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="37" />
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="editbook.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/books/editbook.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-6.111111">
+                  <caret line="142" column="5" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="yipart.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/books/record/yipart.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-11.111111">
+                  <caret line="248" column="36" selection-start-line="248" selection-start-column="36" selection-end-line="248" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="demo.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/allgemein/directives/demo.html">
+          <file leaf-file-name="global.d.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/typings/global.d.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-21.875">
-                  <caret line="35" column="58" selection-start-line="34" selection-start-column="4" selection-end-line="35" selection-end-column="58" />
+                <state vertical-scroll-proportion="-2.2222223">
+                  <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="recordhelper.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/books/record/recordhelper.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-29.444445">
+                  <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
                   <folding>
-                    <marker date="1456931803000" expanded="true" signature="1070:1128" placeholder="..." />
+                    <element signature="n#!!block;n#IsGua#0;n#RecordHelper#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="bookcontent.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/books/bookcontent.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-15.555555">
+                  <caret line="314" column="10" selection-start-line="314" selection-start-column="10" selection-end-line="314" selection-end-column="10" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="book.d.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/typings/book.d.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-4.4444447">
+                  <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="guaview.ts" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/client/liuyao/guaview.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.14603616">
+                  <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                    <element signature="n#!!block;n#caigua#0;n#GuaView#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="base.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lib/base.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="95" column="20" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="24" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -187,8 +206,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="TypeScript File" />
         <option value="HTML File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -198,8 +217,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/allgemein/desktop.ts" />
-        <option value="$PROJECT_DIR$/client/books/bookmarket.html" />
         <option value="$PROJECT_DIR$/client/liuyao/paipan/leading.html" />
         <option value="$PROJECT_DIR$/client/liuyao/paiLiuyao.html" />
         <option value="$PROJECT_DIR$/client/user/userlogin.html" />
@@ -210,7 +227,6 @@
         <option value="$PROJECT_DIR$/client/compass/compass.html" />
         <option value="$PROJECT_DIR$/client/books/record/recordview.html" />
         <option value="$PROJECT_DIR$/client/books/editbook.html" />
-        <option value="$PROJECT_DIR$/client/books/bookmarket.ts" />
         <option value="$PROJECT_DIR$/client/liuyao/paipan/leading.ts" />
         <option value="$PROJECT_DIR$/client/books/editbook.ts" />
         <option value="$PROJECT_DIR$/client/books/bookcontent.html" />
@@ -241,14 +257,17 @@
         <option value="$PROJECT_DIR$/client/allgemein/directives/smselect.ts" />
         <option value="$PROJECT_DIR$/client/bazi/paiBazi.html" />
         <option value="$PROJECT_DIR$/client/liuyao/guaview.html" />
-        <option value="$PROJECT_DIR$/client/allgemein/directives/demo.ts" />
-        <option value="$PROJECT_DIR$/client/allgemein/directives/demo.html" />
         <option value="$PROJECT_DIR$/client/allgemein/directives/texteditor.html" />
-        <option value="$PROJECT_DIR$/client/books/record/yipart.ts" />
         <option value="$PROJECT_DIR$/client/books/record/yipart.html" />
         <option value="$PROJECT_DIR$/client/books/record/recordview.ts" />
-        <option value="$PROJECT_DIR$/client/books/bookcontent.ts" />
         <option value="$PROJECT_DIR$/client/allgemein/directives/texteditor.ts" />
+        <option value="$PROJECT_DIR$/client/allgemein/directives/demo.html" />
+        <option value="$PROJECT_DIR$/client/allgemein/directives/demo.ts" />
+        <option value="$PROJECT_DIR$/client/books/bookmarket.html" />
+        <option value="$PROJECT_DIR$/client/books/bookmarket.ts" />
+        <option value="$PROJECT_DIR$/client/books/bookcontent.ts" />
+        <option value="$PROJECT_DIR$/client/books/record/yipart.ts" />
+        <option value="$PROJECT_DIR$/client/books/tysqlite.ts" />
       </list>
     </option>
   </component>
@@ -258,8 +277,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="349" />
-    <option name="y" value="36" />
+    <option name="x" value="230" />
+    <option name="y" value="58" />
     <option name="width" value="1722" />
     <option name="height" value="965" />
   </component>
@@ -425,6 +444,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HuaheC9" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="huahemeteor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="compass" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -462,6 +499,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="books" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HuaheC9" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="huahemeteor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="books" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="record" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -538,17 +597,18 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/lib" />
+      <recent name="$PROJECT_DIR$/resources" />
+      <recent name="$PROJECT_DIR$/resources/android" />
+      <recent name="$PROJECT_DIR$/public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/typings" />
       <recent name="$PROJECT_DIR$/client/lib" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/client" />
       <recent name="$PROJECT_DIR$/lib" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources" />
-      <recent name="$PROJECT_DIR$/resources/android" />
-      <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
   <component name="RunManager" selected="Meteor.Huahe">
@@ -642,7 +702,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="349" y="36" width="1722" height="965" extended-state="0" />
+    <frame x="230" y="58" width="1722" height="965" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17479675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -681,77 +741,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/books/editbook.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/typings/book.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.111111">
-          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/books/editbook.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9466019">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/liuyao/paipan/leading.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8737864">
-          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/books/bookmarket.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="75" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/huahe.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/books/bookcontent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.647059">
-          <caret line="85" column="37" selection-start-line="85" selection-start-column="32" selection-end-line="85" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/typings/global.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/books/record/recordhelper.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!block;n#IsGua#0;n#RecordHelper#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/typings/angular2-meteor.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.444445">
@@ -809,13 +798,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.373444">
           <caret line="99" column="51" selection-start-line="99" selection-start-column="23" selection-end-line="99" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/compass/compass.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.444445">
-          <caret line="213" column="36" selection-start-line="213" selection-start-column="20" selection-end-line="213" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -899,14 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/liuyao/paiLiuyao.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="47" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/bazi/baziview.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.11111">
@@ -920,16 +894,6 @@
         <state vertical-scroll-proportion="20.5">
           <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/liuyao/guaview.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6666665">
-          <caret line="434" column="22" selection-start-line="434" selection-start-column="22" selection-end-line="434" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!block;n#caigua#0;n#GuaView#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -988,50 +952,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/allgemein/directives/texteditor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/bazi/paiBazi.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="30" column="24" selection-start-line="30" selection-start-column="20" selection-end-line="31" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/allgemein/directives/texteditor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/liuyao/paipan/pailiuyaogua.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.185184">
+          <caret line="152" column="31" selection-start-line="152" selection-start-column="31" selection-end-line="152" selection-end-column="31" />
           <folding>
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#!!block;n#initGuaNames#0;n#PaiLiuyaoGua#0" expanded="false" />
+            <element signature="n#!!block;n#initGuaNamesShang#0;n#PaiLiuyaoGua#0" expanded="false" />
+            <element signature="n#!!block;n#initGuaNamesGong#0;n#PaiLiuyaoGua#0" expanded="false" />
+            <element signature="n#!!block;n#showAnimate#0;n#PaiLiuyaoGua#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/allgemein/setting.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="26" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/allgemein/directives/demo.html">
+    <entry file="file://$PROJECT_DIR$/client/books/record/recordview.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.875">
-          <caret line="35" column="58" selection-start-line="34" selection-start-column="4" selection-end-line="35" selection-end-column="58" />
-          <folding>
-            <marker date="1456931803000" expanded="true" signature="1070:1128" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="74" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/allgemein/directives/demo.ts">
+    <entry file="file://$PROJECT_DIR$/client/allgemein/directives/texteditor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.888889">
-          <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1044,63 +1016,157 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/books/record/yipart.ts">
+    <entry file="file://$PROJECT_DIR$/client/lib/sql.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.703704">
-          <caret line="266" column="32" selection-start-line="266" selection-start-column="32" selection-end-line="266" selection-end-column="32" />
-          <folding>
-            <element signature="n#!!block;n#initQiNiuBook#0;n#YixuePart#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/books/record/yipart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.625">
-          <caret line="73" column="83" selection-start-line="73" selection-start-column="83" selection-end-line="73" selection-end-column="83" />
+        <state vertical-scroll-proportion="-5.625">
+          <caret line="81" column="0" selection-start-line="73" selection-start-column="83" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/allgemein/directives/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.125">
+          <caret line="37" column="57" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/compass/compass.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.6717663">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/allgemein/directives/demo.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.2222223">
+          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/books/editbook.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.111111">
+          <caret line="142" column="5" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#2;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <marker date="1456945559000" expanded="true" signature="2290:4007" placeholder="..." />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/books/record/recordview.ts">
+    <entry file="file://$PROJECT_DIR$/client/books/bookmanager.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5555553">
-          <caret line="43" column="74" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/books/bookmarket.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.425926">
+          <caret line="137" column="55" selection-start-line="137" selection-start-column="55" selection-end-line="137" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/books/bookcontent.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35465926">
-          <caret line="293" column="49" selection-start-line="293" selection-start-column="49" selection-end-line="293" selection-end-column="49" />
+        <state vertical-scroll-proportion="-15.555555">
+          <caret line="314" column="10" selection-start-line="314" selection-start-column="10" selection-end-line="314" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/allgemein/directives/texteditor.ts">
+    <entry file="file://$PROJECT_DIR$/client/books/record/recordhelper.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.7777777">
-          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/liuyao/paipan/pailiuyaogua.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4742698">
-          <caret line="152" column="31" selection-start-line="152" selection-start-column="31" selection-end-line="152" selection-end-column="31" />
+        <state vertical-scroll-proportion="-29.444445">
+          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
           <folding>
-            <element signature="n#!!block;n#initGuaNames#0;n#PaiLiuyaoGua#0" expanded="false" />
-            <element signature="n#!!block;n#initGuaNamesShang#0;n#PaiLiuyaoGua#0" expanded="false" />
-            <element signature="n#!!block;n#initGuaNamesGong#0;n#PaiLiuyaoGua#0" expanded="false" />
-            <element signature="n#!!block;n#showAnimate#0;n#PaiLiuyaoGua#0" expanded="false" />
+            <element signature="n#!!block;n#IsGua#0;n#RecordHelper#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/books/record/yipart.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.111111">
+          <caret line="248" column="36" selection-start-line="248" selection-start-column="36" selection-end-line="248" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/typings/global.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.2222223">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/books/bookmarket.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.125">
+          <caret line="31" column="86" selection-start-line="31" selection-start-column="86" selection-end-line="31" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="95" column="20" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/liuyao/paiLiuyao.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5555556">
+          <caret line="68" column="47" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/typings/book.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.4444447">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/liuyao/guaview.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14603616">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!block;n#caigua#0;n#GuaView#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/books/tysqlite.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58414465">
+          <caret line="137" column="21" selection-start-line="137" selection-start-column="21" selection-end-line="137" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!block;n#convertDataURIToBinary#0;n#TYSqlite#0" expanded="false" />
           </folding>
         </state>
       </provider>

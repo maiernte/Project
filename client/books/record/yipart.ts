@@ -79,6 +79,7 @@ export class YixuePart{
 
     set EditModel(value){
         this.editmodel = value;
+
         if(value == false){
             let domDesc = jQuery(this.rootElement.nativeElement).find('.editable.description')
             domDesc.html(this.Description)
@@ -244,19 +245,19 @@ export class YixuePart{
         this.Question = (this.record.Question || '')
         this.FeedBack = (this.record.FeedText || '')
         this.Description = (this.record.Description || '')
+
+        console.log(this.record.Data)
     }
 
     ngAfterViewInit(){
         if(this.IsCordova) return
     
         let book = LocalBooks.findOne({_id: this.record.BookId})
-        if(!book || book.cloud != true){
+        if(book && book.cloud == true){
             // 本地书集以及手机软件不允许用七牛
-            return
+            this.initQiNiuBook();
+            this.AllowQiniu = true;
         }
-    
-        this.initQiNiuBook();
-        this.AllowQiniu = true;
 
         this.EditModel = false
     }

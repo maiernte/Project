@@ -8,12 +8,15 @@ import {Router, RouteParams} from 'angular2/router'
 import {TranslatePipe} from 'client/allgemein/translatePipe'
 import {GlobalSetting} from 'client/globalsetting'
 
+import {TYSqlite} from 'client/books/tysqlite'
 
 import {LocalRecords, LocalBooks} from 'collections/books'
 
 declare var jQuery;
 declare var CouchDB: any;
 declare var Mongo;
+declare var Camera;
+declare var navigator: any;
 
 @Component({
     selector: "book-market",
@@ -123,6 +126,55 @@ export class BookMarket{
         let bookid = book.Id ? book.Id : ''
         LocalBooks.update({_id: bookid}, {$set:{readed: Date.now()}})
         this.router.parent.navigate(['./BookContent', {id: bookid}])
+    }
+
+    importBook(){
+        if(this.glsetting.IsCordova){
+            navigator['camera'].getPicture((data) => {
+                let db = new TYSqlite(data)
+                this.convertBook(db)
+            }, function (err) {
+                if (err != "Selection cancelled.") {
+                    this.glsetting.Notify('读取文件失败', -1)
+                }
+            },{
+                quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+            });
+        }else{
+            jQuery("#import-book-btn").trigger('click')
+        }
+    }
+
+    importBookWeb(event){
+        let f = event.srcElement.files[0];
+        let r = new FileReader();
+        r.onload = () => {
+            let db = new TYSqlite(r.result)
+            this.convertBook(db)
+        }
+
+        if(!f){
+            return
+        }else{
+            r.readAsDataURL(f);
+        }
+    }
+
+    private convertBook(db: TYSqlite){
+        db.Import().then(() => {
+            this.books = []
+            let bkmanager = this.glsetting.BookManager
+            let bks = bkmanager.MyBooks;
+            for(let bk of bks){
+                this.books.push(new BookView(bk))
+            }
+
+            this.glsetting.Notify("成功导入书集!", 1)
+        }).catch(err => {
+            this.glsetting.Alert('导入书集出错', err.toString())
+        })
     }
     
     private loadBooks(){

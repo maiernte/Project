@@ -7,6 +7,8 @@ import {GlobalSetting} from  'client/globalsetting'
 import {SemanticSelect, tyitem, tyoption} from './smselect'
 import {TYEditor} from './texteditor'
 
+import {TYSqlite} from 'client/books/tysqlite'
+
 declare var jQuery:any;
 
 @Component({
@@ -97,5 +99,17 @@ export class Demo{
         tmp.Items.push({Value: 2, Text: "壬戌"})
 
         this.jiazioptions = tmp;
+    }
+
+    loadExternSqlite(event){
+        var f = event.srcElement.files[0];
+        var r = new FileReader();
+        r.onload = () => {
+            let db = new TYSqlite(r.result)
+            console.log(db.BookType)
+        }
+
+        //r.readAsArrayBuffer(f);
+        r.readAsDataURL(f);
     }
 }

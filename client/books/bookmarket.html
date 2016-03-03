@@ -13,7 +13,7 @@
                 <i class="cloud download icon"></i>
             </div>
             <div class="hidden content">
-                {{'下行' | tran:glsetting.lang}}
+                {{'下载' | tran:glsetting.lang}}
             </div>
         </div>
         <div class="ui animated fade primary button item" (click)="editBook()">
@@ -22,6 +22,15 @@
             </div>
             <div class="hidden content">
                 {{'新建' | tran:glsetting.lang}}
+            </div>
+        </div>
+        <div class="ui animated fade primary button item" (click)="importBook()">
+            <div class="visible content">
+                <i class="share square icon"></i>
+            </div>
+            <div class="hidden content">
+                <input type="file" hidden id="import-book-btn" (change)="importBookWeb($event)">
+                {{'导入' | tran:glsetting.lang}}
             </div>
         </div>
         <!--<div class="item active"
