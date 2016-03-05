@@ -56,11 +56,15 @@
         
         <div class="ui buttons">
             <button class="ui primary tiny button" (click)="saveBook()">
-                {{'保存修改' | tran:glsetting.lang}}
+                {{'保存' | tran:glsetting.lang}}
             </button>
             <button class="ui primary tiny button" (click)="cleanLocal()"
                 [class.disabled]="IsNew">
-                {{'清空本地' | tran:glsetting.lang}}
+                {{'清空' | tran:glsetting.lang}}
+            </button>
+            <button class="ui primary tiny button" (click)="exportBook()"
+                    [class.disabled]="IsNew">
+                {{'导出' | tran:glsetting.lang}}
             </button>
             <button class="ui primary tiny button" (click)="pushCloud()" 
                 [class.disabled]="IsNew">

@@ -21,7 +21,8 @@
     </div>
     <p>{{'正在加载数据, 请耐心等候...' | tran:glsetting.lang}}</p>
 </div>
-<yixue-part [record]="Record" *ngIf="Record != null">
+<yixue-part [record]="Record" *ngIf="Record != null" #yipart>
     <guaview *ngIf='IsGua' [initdata]="YiData"></guaview>
-    <baziview *ngIf='!IsGua' [initdata]="YiData"></baziview>
+    <baziview *ngIf='!IsGua' [initdata]="YiData"
+              (onshowyear)="yipart.stickContent($event)"></baziview>
 </yixue-part>

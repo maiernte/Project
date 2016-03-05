@@ -172,7 +172,8 @@
                         </div>
 
                         <div class="ui grid" *ngFor="#y of ln.Liunian">
-                            <div class="two wide column" style="padding-top: 0;padding-left: 0;padding-right: 0;text-align: center">
+                            <div class="two wide column" style="padding-top: 0;padding-left: 0;padding-right: 0;text-align: center"
+                                 (click)="showYearInfo(y.Year)">
                                 {{y.Year}}
                             </div>
                             <div class="two wide column" style="padding-top: 0;padding-left: 0;padding-right: 0;text-align: center">

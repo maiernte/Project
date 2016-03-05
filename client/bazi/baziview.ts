@@ -2,7 +2,7 @@
 /// <reference path="../../typings/global.d.ts" />
 /// <reference path="../../typings/book.d.ts" />
 
-import {Component, Inject, Input, ElementRef, AfterViewInit} from 'angular2/core'
+import {Component, Inject, Input, ElementRef, AfterViewInit, EventEmitter} from 'angular2/core'
 import {NgFor} from 'angular2/common'
 
 import {TranslatePipe} from 'client/allgemein/translatePipe'
@@ -21,6 +21,7 @@ declare var alertify;
 @Component({
     selector: 'baziview',
     templateUrl: 'client/bazi/baziview.html',
+    outputs:['onshowyear'],
     pipes: [TranslatePipe],
     directives: [NgFor, SemanticSelect]
 })
@@ -37,6 +38,8 @@ export class BaziView{
     private shenshas: Array<Object>;
     private liunian: Array<Object>;
     private initParams: Object;
+
+    onshowyear = new EventEmitter();
 
     @Input() initdata:string
     Info = {
@@ -314,6 +317,10 @@ export class BaziView{
 
     changeShenShaSetting(value){
         this.shenshaColumnCount = parseInt(value.toString()) + 4
+    }
+
+    showYearInfo(year){
+        this.onshowyear.emit(year)
     }
 
     private paiBazi(params){

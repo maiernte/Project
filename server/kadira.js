@@ -1,8 +1,8 @@
 
 
-/*Meteor.startup(function() {
+Meteor.startup(function() {
     Kadira.connect('4qWZxRSWd7LGWnWMm', 'cc838a0a-2ff7-4f9c-954f-b8f49b62eed9');
-});*/
+});
 
 /*huahe.eu-gb.mybluemix.net : huaheapp
 Kadira.connect('4qWZxRSWd7LGWnWMm', 'cc838a0a-2ff7-4f9c-954f-b8f49b62eed9');*/

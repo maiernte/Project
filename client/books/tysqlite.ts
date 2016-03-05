@@ -1,6 +1,7 @@
 /// <reference path="../../typings/global.d.ts" />
 
 import {LocalRecords, LocalBooks} from 'collections/books'
+import {TYLunar} from '../../lib/lunar/tylunar'
 
 declare var SQL;
 declare var Promise;
@@ -14,6 +15,7 @@ export class TYSqlite{
     private author = ''
     private created: Date
     private bookid = null
+    private description = ''
 
     constructor(data){
         try{
@@ -35,22 +37,39 @@ export class TYSqlite{
         return this.booktype
     }
 
+    get Bookid(){
+        return this.bookid
+    }
+
+    Close(){
+        if(this.db){
+            this.db.close()
+        }
+    }
+
     Import(): any{
         let promise = new Promise((resolve, reject) => {
             this.createbook().then((bookid) => {
-                console.log('bookid = ', bookid)
                 this.bookid = bookid
 
                 if(this.booktype == 'gua'){
                     this.importGua(bookid, (err) => {
-                         if(err){
+                        if(err){
                             reject(err)
-                         }else{
+                        }else{
                             resolve(null)
-                         }
-                     })
-                }else{
+                        }
+                    })
+                }else if (this.booktype == 'bazi'){
                     this.importBazi(bookid, (err) => {
+                        if(err){
+                            reject(err)
+                        }else{
+                            resolve(null)
+                        }
+                    })
+                }else{
+                    this.importMix(bookid, (err) => {
                         if(err){
                             reject(err)
                         }else{
@@ -96,7 +115,13 @@ export class TYSqlite{
                 }else if(rd[0] == 3){
                     this.author = rd[1]
                 }else if(rd[0] == 7){
-                    this.booktype = rd[2].toString() == '1' ? 'gua' : 'bazi'
+                    this.booktype = 'mix'
+                    this.booktype = rd[2].toString() == '1' ? 'gua' : this.booktype
+                    this.booktype = rd[2].toString() == '2' ? 'bazi' : this.booktype
+                }else if(rd[0] == 20){
+                    this.description = rd[1]
+                }else if(rd[0] == 21){
+                    this.bookid = rd[1]
                 }
             }
         }catch(err){
@@ -107,9 +132,9 @@ export class TYSqlite{
     private createbook(): any{
         let promise = new Promise((resolve, reject) => {
 
-            LocalBooks.insert({
+            let doc = {
                 name: this.bookname,
-                description: '',
+                description: (this.description || ''),
                 icon: null,
                 author: this.author,
                 owner: Meteor.userId(),
@@ -121,8 +146,13 @@ export class TYSqlite{
                 cloud: false,
                 deleted: false,
                 public: false
-            }, (err, id) => {
-                console.log('book inserted', err, id)
+            }
+
+            if(this.bookid){
+                doc['_id'] = this.bookid
+            }
+
+            LocalBooks.insert(doc, (err, id) => {
                 if(id){
                     resolve(id)
                 }else{
@@ -144,9 +174,11 @@ export class TYSqlite{
         let rds = this.db.exec("SELECT * FROM t_guali");
         let owner = Meteor.userId()
 
-        let idx = rds[0]['values'].length
-        for(let rd of rds[0]['values']){
-            idx--;
+        let recordcount = rds[0]['values'].length
+        let counter = recordcount
+        for(let idx = 0; idx < recordcount; idx++){
+            let rd = rds[0]['values'][idx]
+
             let create = new Date(Date.parse(rd[1]))
             let modify = new Date(Date.parse(rd[2]))
             let birthday = new Date(Date.parse(rd[3]))
@@ -154,12 +186,19 @@ export class TYSqlite{
             let gender = rd[8] == '男' ? 'm' : 'f'
             let description = this.parseDescription(rd[9])
 
+            let bazi = TYLunar.calcBazi(birthday.getFullYear(),
+                birthday.getMonth() + 1,
+                birthday.getDate(),
+                birthday.getHours(),
+                birthday.getMinutes())
+
             let doc = {
                 book: bookid,
                 bazi: {
                     time: birthday.formate('datetime'),
                     gender: gender,
-                    bazi: '....'
+                    place: rd[4],
+                    bazi: `${bazi.Y.Name} ${bazi.M.Name} ${bazi.D.Name} ${bazi.T.Name}`
                 },
                 question: name,
                 description: description,
@@ -172,7 +211,8 @@ export class TYSqlite{
             }
 
             LocalRecords.insert(doc, (err, id) => {
-                if(idx == 0){
+                counter--
+                if(counter == 0){
                     console.log('import record finished')
                     callback(null)
                 }
@@ -184,11 +224,13 @@ export class TYSqlite{
         let rds = this.db.exec("SELECT * FROM t_guali");
         let owner = Meteor.userId()
 
-        let idx = rds[0]['values'].length
-        for(let rd of rds[0]['values']){
-            idx--;
+        let recordcount = rds[0]['values'].length
+        let counter = recordcount
+        for(let idx = 0; idx < recordcount; idx++){
+            let rd = rds[0]['values'][idx]
 
             if(rd[7].length < 3 || rd[8].length < 3){
+                counter--
                 continue
             }
 
@@ -203,7 +245,7 @@ export class TYSqlite{
             if(time.toString() == 'Invalid Date'){
                 time = null
             }else{
-                time = time.format('datetime')
+                time = time.formate('datetime')
             }
 
             let doc = {
@@ -226,7 +268,25 @@ export class TYSqlite{
             }
 
             LocalRecords.insert(doc, (err, id) => {
-                if(idx == 0){
+                counter--
+                if(counter == 0){
+                    console.log('import record finished')
+                    callback(null)
+                }
+            })
+        }
+    }
+
+    private importMix(bookid, callback){
+        let rds = this.db.exec("SELECT * FROM t_guali");
+        let counter = rds[0]['values'].length
+
+        for(let row of rds[0]['values']){
+            let doc = JSON.parse(row[1])
+
+            LocalRecords.insert(doc, (err, id)=>{
+                counter--
+                if(counter == 0){
                     console.log('import record finished')
                     callback(null)
                 }

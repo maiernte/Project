@@ -182,7 +182,7 @@ export class TYLunar{
                     month: number,
                     day:number,
                     hour: number,
-                    minute: number): Object{
+                    minute: number): BaseBazi{
         if (minute == undefined || minute == null) minute = 0;
         if (hour == undefined || hour == null) hour = 0;
 
@@ -364,3 +364,9 @@ export class TYDate{
     }
 }
 
+export interface BaseBazi {
+    Y: GanZhi,
+    M: GanZhi,
+    D: GanZhi,
+    T: GanZhi,
+}

@@ -81,7 +81,9 @@ export class YixuePart{
         this.editmodel = value;
 
         if(value == false){
+            console.log("set description to display")
             let domDesc = jQuery(this.rootElement.nativeElement).find('.editable.description')
+            //let domDesc = jQuery('.editable.description')
             domDesc.html(this.Description)
         }else{
 
@@ -245,11 +247,11 @@ export class YixuePart{
         this.Question = (this.record.Question || '')
         this.FeedBack = (this.record.FeedText || '')
         this.Description = (this.record.Description || '')
-
-        console.log(this.record.Data)
     }
 
     ngAfterViewInit(){
+        this.EditModel = false
+
         if(this.IsCordova) return
     
         let book = LocalBooks.findOne({_id: this.record.BookId})
@@ -258,8 +260,6 @@ export class YixuePart{
             this.initQiNiuBook();
             this.AllowQiniu = true;
         }
-
-        this.EditModel = false
     }
 
     editorSaved(content){
@@ -298,6 +298,26 @@ export class YixuePart{
                 console.log('init qiniu uploader', this.qiniuUploader)
             })
         }
+    }
+
+    stickContent(year){
+        let mark = '#' + year
+        let start = this.Description.indexOf(mark)
+
+        if(start < 0) {
+            alertify.set('notifier','position', 'top-right');
+            alertify.notify('没有此流年的内容。', "warning", 3)
+            return
+        }
+
+        let end = this.Description.indexOf('#', start + 1)
+        end = end < 0 ? this.Description.length - 1 : end
+        console.log('start', start, end)
+        let dom = this.Description.substring(start, end)
+        dom = `${dom}`
+
+        alertify.set('notifier','position', 'top-right');
+        alertify.notify(dom, "message", 0)
     }
 
     private setprogress(value){

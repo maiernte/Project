@@ -133,6 +133,7 @@ export class BookMarket{
             navigator['camera'].getPicture((data) => {
                 let db = new TYSqlite(data)
                 this.convertBook(db)
+
             }, function (err) {
                 if (err != "Selection cancelled.") {
                     this.glsetting.Notify('读取文件失败', -1)
@@ -156,6 +157,7 @@ export class BookMarket{
         }
 
         if(!f){
+            console.log("!f")
             return
         }else{
             r.readAsDataURL(f);
@@ -163,6 +165,27 @@ export class BookMarket{
     }
 
     private convertBook(db: TYSqlite){
+        if(db.BookType == 'mix'){
+            let bkid = db.Bookid
+            let foundbook = LocalBooks.findOne({_id: bkid})
+            if(!!foundbook){
+                let msg = '书集已经存在。再次导入会覆盖原有书集的内容。确定要导入吗？'
+                this.glsetting.Confirm('导入书集', msg, () => {
+                    LocalRecords.remove({book: bkid})
+                    LocalBooks.remove({_id: bkid})
+
+                    this.doimport(db)
+                }, null)
+            }else{
+                this.doimport(db)
+            }
+        }else{
+            this.doimport(db)
+        }
+    }
+
+    private doimport(db: TYSqlite){
+        //console.log('convertBook', db)
         db.Import().then(() => {
             this.books = []
             let bkmanager = this.glsetting.BookManager
@@ -172,8 +195,10 @@ export class BookMarket{
             }
 
             this.glsetting.Notify("成功导入书集!", 1)
+            db.Close()
         }).catch(err => {
             this.glsetting.Alert('导入书集出错', err.toString())
+            db.Close()
         })
     }
     

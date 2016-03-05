@@ -1,5 +1,6 @@
 /// <reference path="../../typings/angular2-meteor.d.ts" />
 /// <reference path="../../typings/book.d.ts" />
+/// <reference path="../../typings/global.d.ts" />
 
 import {Component, Inject, ElementRef, NgZone} from 'angular2/core'
 import {FormBuilder, ControlGroup, Validators, FORM_DIRECTIVES, NgIf} from 'angular2/common';
@@ -13,7 +14,10 @@ import {MeteorComponent} from 'angular2-meteor';
 import {LocalBooks, LocalRecords} from 'collections/books'
 import {PaipanEmitter} from 'client/allgemein/paipanermitter'
 
+import {saveAs} from 'client/lib/FileSaver'
+
 declare var jQuery;
+declare var SQL
 
 @Component({
     selector: "book-edit",
@@ -140,6 +144,31 @@ export class BookEditor{
         this.glsetting.Confirm("清空本地", msg, () => {
             LocalRecords.remove({book: this.book._id})
         }, null) 
+    }
+
+    exportBook(){
+        let db = new SQL.Database();
+        // Run a query without reading the results
+        db.run("CREATE TABLE t_fuzhu (ID, CHARACTER, GUAID);");
+        db.run("CREATE TABLE t_guali (ID, CONTENT);")
+
+        let time = new Date(this.book.created)
+        db.run("INSERT INTO t_fuzhu VALUES (?,?,?)", [1, this.Name, null])
+        db.run("INSERT INTO t_fuzhu VALUES (?,?,?)", [2, time.formate("datetime"), null])
+        db.run("INSERT INTO t_fuzhu VALUES (?,?,?)", [3, this.Author, null])
+        db.run("INSERT INTO t_fuzhu VALUES (?,?,?)", [7, 'Booktype', 3])
+        db.run("INSERT INTO t_fuzhu VALUES (?,?,?)", [20, this.Desc, null])
+        db.run("INSERT INTO t_fuzhu VALUES (?,?,?)", [21, this.book._id, null])
+
+        let rds = LocalRecords.find({book: this.book._id}).fetch()
+        for(let id = 0; id < rds.length; id++){
+            let rd = JSON.stringify(rds[id])
+            db.run("INSERT INTO t_guali VALUES (?,?)", [id + 1, rd])
+        }
+
+        var binaryArray = db.export();
+        var blob = new Blob([binaryArray.buffer])
+        saveAs(blob, this.book.name + '.db')
     }
     
     private addBook(){
